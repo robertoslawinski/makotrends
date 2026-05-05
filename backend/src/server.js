@@ -9,7 +9,7 @@ const port = process.env.PORT || 5000;
 connectDb()
   .then(() => {
     app.listen(port, () => {
-      console.log(`makotrends.com API running on port ${port}`);
+      console.log(`MakoTrends API running on port ${port}`);
     });
   })
   .catch((error) => {

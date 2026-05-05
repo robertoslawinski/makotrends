@@ -81,7 +81,7 @@ const runSeed = async () => {
     { email: adminEmail },
     {
       $set: {
-        name: "makotrends.com Admin",
+        name: "MakoTrends Admin",
         passwordHash,
         role: "admin"
       },

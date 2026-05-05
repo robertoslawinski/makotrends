@@ -17,7 +17,7 @@ export default function AppLayout() {
       <header className={styles.header}>
         <NavLink to="/" className={styles.brand}>
           <Activity size={24} />
-          <span>makotrends.com</span>
+          <span>MakoTrends</span>
         </NavLink>
         <nav className={styles.nav}>
           <NavLink to="/">Markets</NavLink>
