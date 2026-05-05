@@ -1,0 +1,164 @@
+.shell {
+  min-height: 100vh;
+  background: transparent;
+  color: #17202a;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 18px;
+  padding: 14px clamp(18px, 4vw, 56px);
+  border-bottom: 1px solid #e1e6ec;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(14px);
+}
+
+.brand,
+.nav a,
+.actions a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-weight: 800;
+  font-size: 22px;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.brand svg {
+  color: #007a70;
+}
+
+.nav,
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav {
+  justify-content: center;
+}
+
+.nav a,
+.profileLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #4b5a68;
+  font-weight: 650;
+  border-radius: 8px;
+  padding: 9px 10px;
+  transition:
+    background 160ms ease,
+    color 160ms ease;
+}
+
+.nav a[aria-current="page"],
+.profileLink[aria-current="page"] {
+  color: #007a70;
+  background: #e7f4f1;
+}
+
+.nav a:hover,
+.profileLink:hover {
+  color: #007a70;
+  background: #eef5f3;
+}
+
+.linkButton,
+.primaryButton,
+.iconButton {
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 750;
+}
+
+.linkButton {
+  padding: 9px 12px;
+  color: #2c3946;
+}
+
+.primaryButton {
+  padding: 10px 14px;
+  color: #ffffff;
+  background: #007a70;
+  box-shadow: 0 8px 20px rgba(0, 122, 112, 0.18);
+}
+
+.iconButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  color: #394957;
+  background: #eef2f5;
+  transition:
+    background 160ms ease,
+    transform 160ms ease;
+}
+
+.iconButton:hover {
+  background: #dfe8ed;
+  transform: translateY(-1px);
+}
+
+.main {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 28px 0 56px;
+}
+
+@media (max-width: 920px) {
+  .header {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .nav {
+    justify-content: flex-start;
+  }
+
+  .nav,
+  .actions {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 560px) {
+  .header {
+    padding: 16px;
+  }
+
+  .brand {
+    font-size: 24px;
+  }
+
+  .nav,
+  .actions {
+    gap: 8px;
+  }
+
+  .nav a,
+  .profileLink {
+    padding: 8px 7px;
+  }
+
+  .main {
+    width: min(100% - 20px, 1180px);
+    padding-top: 22px;
+  }
+}

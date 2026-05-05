@@ -1,0 +1,38 @@
+.wrap {
+  display: grid;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  color: #3b4a57;
+  font-size: 14px;
+}
+
+.track {
+  height: 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e9eef3;
+}
+
+.track span {
+  display: block;
+  height: 100%;
+  transition: width 180ms ease;
+}
+
+.yes {
+  background: #00947f;
+}
+
+.no {
+  background: #cf4d3f;
+}
+
+.wrap small {
+  color: #71808f;
+  font-weight: 650;
+}
