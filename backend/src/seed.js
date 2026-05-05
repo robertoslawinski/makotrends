@@ -8,7 +8,7 @@ import Vote from "./models/Vote.js";
 
 dotenv.config();
 
-const adminEmail = process.env.SEED_ADMIN_EMAIL || "admin@trendscore.local";
+const adminEmail = process.env.SEED_ADMIN_EMAIL || "admin@makotrends.local";
 const adminPassword = process.env.SEED_ADMIN_PASSWORD || "Admin12345!";
 
 const daysFromNow = (days) => {
@@ -81,7 +81,7 @@ const runSeed = async () => {
     { email: adminEmail },
     {
       $set: {
-        name: "TrendScore Admin",
+        name: "makotrends.com Admin",
         passwordHash,
         role: "admin"
       },

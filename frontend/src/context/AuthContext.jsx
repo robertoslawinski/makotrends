@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const verify = async () => {
-      const token = localStorage.getItem("trendscore_token");
+      const token = localStorage.getItem("makotrends_token");
       if (!token) {
         setLoading(false);
         return;
@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
         const { data } = await api.get("/auth/verify");
         setUser(data.user);
       } catch {
-        localStorage.removeItem("trendscore_token");
+        localStorage.removeItem("makotrends_token");
         setUser(null);
       } finally {
         setLoading(false);
@@ -31,18 +31,18 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     const { data } = await api.post("/auth/login", { email, password });
-    localStorage.setItem("trendscore_token", data.token);
+    localStorage.setItem("makotrends_token", data.token);
     setUser(data.user);
   };
 
   const signup = async (name, email, password) => {
     const { data } = await api.post("/auth/signup", { name, email, password });
-    localStorage.setItem("trendscore_token", data.token);
+    localStorage.setItem("makotrends_token", data.token);
     setUser(data.user);
   };
 
   const logout = () => {
-    localStorage.removeItem("trendscore_token");
+    localStorage.removeItem("makotrends_token");
     setUser(null);
   };
 

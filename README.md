@@ -1,11 +1,11 @@
-# TrendScore
+# makotrends.com
 
-TrendScore is a full-stack MVP for a gamified trend prediction market. Users create accounts, vote yes/no on future trends, earn points when predictions are resolved, and compete on a ranking board.
+makotrends.com is a full-stack MVP for a gamified trend prediction market. Users create accounts, vote yes/no on future trends, earn points when predictions are resolved, and compete on a ranking board.
 
 ## Folder Structure
 
 ```text
-trendscore/
+makotrends/
   backend/
     src/
       config/
