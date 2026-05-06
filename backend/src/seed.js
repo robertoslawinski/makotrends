@@ -8,8 +8,8 @@ import Vote from "./models/Vote.js";
 
 dotenv.config();
 
-const adminEmail = process.env.SEED_ADMIN_EMAIL || "admin@makotrends.local";
-const adminPassword = process.env.SEED_ADMIN_PASSWORD || "Admin12345!";
+const adminEmail = process.env.SEED_ADMIN_EMAIL || process.env.ADMIN_EMAIL;
+const adminPassword = process.env.SEED_ADMIN_PASSWORD || process.env.ADMIN_PASSWORD;
 
 const daysFromNow = (days) => {
   const date = new Date();
@@ -62,6 +62,16 @@ const predictions = [
 ];
 
 const runSeed = async () => {
+  if (!adminEmail || !adminPassword) {
+    throw new Error(
+      "ADMIN_EMAIL and ADMIN_PASSWORD are required before running seed"
+    );
+  }
+
+  if (adminPassword.length < 12) {
+    throw new Error("ADMIN_PASSWORD must be at least 12 characters");
+  }
+
   await connectDb();
 
   const passwordHash = await bcrypt.hash(adminPassword, 12);
@@ -106,7 +116,6 @@ const runSeed = async () => {
 
   console.log("Seed complete");
   console.log(`Admin email: ${adminEmail}`);
-  console.log(`Admin password: ${adminPassword}`);
   console.log(`Predictions created: ${predictions.length}`);
 };
 
