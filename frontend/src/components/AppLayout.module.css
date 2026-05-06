@@ -31,14 +31,15 @@
 .brand {
   display: flex;
   align-items: center;
-  gap: 10px;
-  min-width: 178px;
+  gap: 12px;
+  min-width: 226px;
 }
 
 .brand img {
   display: block;
-  width: 46px;
-  height: 46px;
+  width: 92px;
+  height: auto;
+  object-fit: contain;
 }
 
 .brand span {
@@ -170,8 +171,9 @@
 }
 
 .footerBrand img {
-  width: 28px;
-  height: 28px;
+  width: 52px;
+  height: auto;
+  object-fit: contain;
 }
 
 .footer p {
