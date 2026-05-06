@@ -7,7 +7,7 @@
 .row {
   display: flex;
   justify-content: space-between;
-  color: #3b4a57;
+  color: var(--text);
   font-size: 14px;
 }
 
@@ -15,24 +15,26 @@
   height: 10px;
   overflow: hidden;
   border-radius: 999px;
-  background: #e9eef3;
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .track span {
   display: block;
   height: 100%;
-  transition: width 180ms ease;
+  transition: width 280ms ease;
 }
 
 .yes {
-  background: #00947f;
+  background: linear-gradient(90deg, var(--teal), var(--aqua));
+  box-shadow: 0 0 18px rgba(24, 199, 193, 0.32);
 }
 
 .no {
-  background: #cf4d3f;
+  background: linear-gradient(90deg, #b6483e, var(--gold));
+  box-shadow: 0 0 18px rgba(200, 178, 115, 0.22);
 }
 
 .wrap small {
-  color: #71808f;
+  color: var(--muted);
   font-weight: 650;
 }

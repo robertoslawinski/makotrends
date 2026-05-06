@@ -1,6 +1,7 @@
 import { Filter } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import api from "../api/client";
+import brandImage from "../assets/makotrends-brand.jpg";
 import PredictionCard from "../components/PredictionCard";
 import styles from "./Home.module.css";
 
@@ -41,15 +42,26 @@ export default function Home() {
       <div className={styles.header}>
         <div>
           <span className={styles.eyebrow}>Prediction markets</span>
-          <h1>Score tomorrow's trends before everyone else does.</h1>
+          <h1>See tomorrow before the market does.</h1>
+          <p>
+            MakoTrends turns emerging signals into sharp yes/no markets for people who
+            want to read cultural, AI and technology shifts before they become obvious.
+          </p>
+          <div className={styles.heroActions}>
+            <a href="#markets">Explore signals</a>
+            <a href="/rules">How scoring works</a>
+          </div>
         </div>
-        <div className={styles.stat}>
-          <strong>{openCount}</strong>
-          <span>open markets</span>
+        <div className={styles.heroVisual}>
+          <img src={brandImage} alt="MakoTrends shark signal identity" />
+          <div className={styles.stat}>
+            <strong>{openCount}</strong>
+            <span>open markets</span>
+          </div>
         </div>
       </div>
 
-      <div className={styles.filters}>
+      <div className={styles.filters} id="markets">
         <Filter size={18} />
         {statuses.map((item) => (
           <button

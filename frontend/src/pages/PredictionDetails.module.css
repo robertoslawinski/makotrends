@@ -7,10 +7,12 @@
 
 .market,
 .panel {
-  border: 1px solid #dfe6ed;
-  border-radius: 8px;
-  background: #ffffff;
-  box-shadow: 0 12px 34px rgba(23, 32, 42, 0.07);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(160deg, rgba(24, 199, 193, 0.07), transparent 38%),
+    var(--surface);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.3);
 }
 
 .market {
@@ -24,11 +26,12 @@
   font-size: clamp(32px, 5vw, 56px);
   line-height: 1.04;
   letter-spacing: 0;
+  color: var(--text);
 }
 
 .market p {
   margin: 0;
-  color: #536371;
+  color: var(--muted);
   font-size: 17px;
   line-height: 1.55;
 }
@@ -36,7 +39,7 @@
 .meta {
   display: flex;
   gap: 10px;
-  color: #007a70;
+  color: var(--aqua);
   font-weight: 850;
   text-transform: capitalize;
 }
@@ -55,7 +58,7 @@
 
 .voted,
 .result {
-  color: #007a70;
+  color: var(--aqua);
   font-weight: 850;
   text-transform: capitalize;
 }
@@ -65,24 +68,24 @@
   gap: 14px;
   margin-top: 4px;
   padding-top: 20px;
-  border-top: 1px solid #e5ebf0;
+  border-top: 1px solid var(--border);
 }
 
 .resolution > div:first-child {
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #007a70;
+  color: var(--aqua);
 }
 
 .resolution h2 {
   margin: 0;
-  color: #17202a;
+  color: var(--text);
   font-size: 24px;
 }
 
 .resolution p {
-  color: #3d4c59;
+  color: var(--muted);
 }
 
 .resolution dl {
@@ -98,7 +101,7 @@
 }
 
 .resolution dt {
-  color: #647482;
+  color: var(--muted);
   font-weight: 800;
 }
 
@@ -107,7 +110,7 @@
   align-items: center;
   gap: 7px;
   margin: 0;
-  color: #17202a;
+  color: var(--text);
   font-weight: 750;
 }
 
@@ -124,18 +127,19 @@
   gap: 8px;
   min-height: 48px;
   border: 0;
-  border-radius: 8px;
-  color: #ffffff;
-  background: #007a70;
+  border-radius: 999px;
+  color: #07111f;
+  background: linear-gradient(135deg, var(--aqua), var(--teal));
   cursor: pointer;
   font: inherit;
   font-weight: 850;
-  box-shadow: 0 10px 22px rgba(0, 122, 112, 0.14);
+  box-shadow: 0 14px 34px rgba(24, 199, 193, 0.2);
 }
 
 .voteButtons button:nth-child(2) {
-  background: #cf4d3f;
-  box-shadow: 0 10px 22px rgba(207, 77, 63, 0.14);
+  color: var(--text);
+  background: linear-gradient(135deg, #a74338, #d96b5e);
+  box-shadow: 0 14px 34px rgba(224, 91, 79, 0.18);
 }
 
 .voteButtons button:disabled {
@@ -156,7 +160,7 @@
 }
 
 .panel dt {
-  color: #657483;
+  color: var(--muted);
   font-weight: 750;
 }
 

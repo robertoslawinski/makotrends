@@ -11,10 +11,11 @@
 }
 
 .hero span {
-  color: #007a70;
+  color: var(--aqua);
   font-size: 13px;
   font-weight: 850;
   text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 .hero h1 {
@@ -27,7 +28,7 @@
 .hero p {
   max-width: 760px;
   margin: 0;
-  color: #536371;
+  color: var(--muted);
   font-size: 18px;
   line-height: 1.6;
 }
@@ -43,14 +44,14 @@
   display: grid;
   gap: 12px;
   padding: 22px;
-  border: 1px solid #dfe6ed;
-  border-radius: 8px;
-  background: #ffffff;
-  box-shadow: 0 12px 32px rgba(23, 32, 42, 0.06);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: 0 20px 58px rgba(0, 0, 0, 0.26);
 }
 
 .grid svg {
-  color: #007a70;
+  color: var(--aqua);
 }
 
 .grid h2,
@@ -61,7 +62,7 @@
 .grid p,
 .panel p {
   margin: 0;
-  color: #586775;
+  color: var(--muted);
   line-height: 1.55;
 }
 
@@ -75,10 +76,10 @@
   display: grid;
   gap: 10px;
   padding: 22px;
-  border: 1px solid #dfe6ed;
-  border-radius: 8px;
-  background: #ffffff;
-  box-shadow: 0 12px 32px rgba(23, 32, 42, 0.06);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: 0 20px 58px rgba(0, 0, 0, 0.26);
 }
 
 .stack h2 {
@@ -87,7 +88,7 @@
 
 .stack p,
 .stack li {
-  color: #586775;
+  color: var(--muted);
   line-height: 1.6;
 }
 

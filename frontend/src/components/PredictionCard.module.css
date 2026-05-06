@@ -1,34 +1,60 @@
 .card {
+  position: relative;
   display: grid;
   gap: 14px;
   align-content: start;
   min-height: 330px;
   padding: 20px;
-  border: 1px solid #dfe6ed;
-  border-radius: 8px;
-  background: #ffffff;
-  box-shadow: 0 12px 32px rgba(23, 32, 42, 0.06);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(160deg, rgba(24, 199, 193, 0.07), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent),
+    var(--surface);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.24);
   transition:
     border-color 160ms ease,
     box-shadow 160ms ease,
     transform 160ms ease;
 }
 
+.card::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  background:
+    linear-gradient(90deg, transparent, rgba(24, 199, 193, 0.1), transparent),
+    repeating-linear-gradient(90deg, transparent 0 30px, rgba(255, 255, 255, 0.025) 31px, transparent 32px);
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
 .card:hover {
-  border-color: #c9d8df;
-  box-shadow: 0 18px 42px rgba(23, 32, 42, 0.1);
-  transform: translateY(-2px);
+  border-color: rgba(24, 199, 193, 0.28);
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.34),
+    0 0 44px rgba(24, 199, 193, 0.1);
+  transform: translateY(-3px);
+}
+
+.card:hover::before {
+  opacity: 1;
 }
 
 .card h2 {
+  position: relative;
   margin: 0;
   font-size: 20px;
   line-height: 1.22;
+  color: var(--text);
 }
 
 .card p {
+  position: relative;
   margin: 0;
-  color: #586775;
+  color: var(--muted);
   line-height: 1.5;
 }
 
@@ -42,41 +68,55 @@
 
 .meta span,
 .footer span {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: #647482;
+  color: var(--muted);
   font-size: 14px;
   font-weight: 750;
   text-transform: capitalize;
 }
 
 .meta span:first-child {
-  color: #007a70;
+  color: var(--aqua);
   text-transform: uppercase;
   font-size: 12px;
+  letter-spacing: 0.06em;
 }
 
 .open {
-  color: #007a70 !important;
+  color: var(--aqua) !important;
 }
 
 .closed {
-  color: #9a5c00 !important;
+  color: var(--gold) !important;
 }
 
 .resolved {
-  color: #4952a3 !important;
+  color: #9aa4ff !important;
 }
 
 .footer a {
+  position: relative;
   display: inline-flex;
   align-items: center;
   min-height: 38px;
-  border-radius: 8px;
+  border: 1px solid rgba(24, 199, 193, 0.2);
+  border-radius: 999px;
   padding: 0 12px;
-  color: #007a70;
-  background: #edf7f5;
+  color: var(--text);
+  background: rgba(24, 199, 193, 0.08);
   font-weight: 800;
   text-decoration: none;
+  transition:
+    background 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.footer a:hover {
+  color: #07111f;
+  background: var(--aqua);
+  transform: translateY(-1px);
 }

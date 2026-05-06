@@ -9,10 +9,12 @@
   gap: 16px;
   width: min(430px, 100%);
   padding: 28px;
-  border: 1px solid #dfe6ed;
-  border-radius: 8px;
-  background: #ffffff;
-  box-shadow: 0 14px 38px rgba(23, 32, 42, 0.08);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(145deg, rgba(24, 199, 193, 0.08), transparent 44%),
+    var(--surface);
+  box-shadow: 0 26px 78px rgba(0, 0, 0, 0.32);
 }
 
 .form h1 {
@@ -22,30 +24,32 @@
 .form label {
   display: grid;
   gap: 7px;
-  color: #3d4c59;
+  color: var(--muted);
   font-weight: 800;
 }
 
 .form input {
   min-height: 44px;
-  border: 1px solid #cdd7e1;
-  border-radius: 8px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
   padding: 0 12px;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.055);
   font: inherit;
 }
 
 .form input:focus {
-  border-color: #007a70;
-  box-shadow: 0 0 0 3px rgba(0, 122, 112, 0.12);
+  border-color: var(--aqua);
+  box-shadow: 0 0 0 3px rgba(24, 199, 193, 0.12);
   outline: 0;
 }
 
 .form button {
   min-height: 46px;
   border: 0;
-  border-radius: 8px;
-  color: #ffffff;
-  background: #007a70;
+  border-radius: 999px;
+  color: #07111f;
+  background: linear-gradient(135deg, var(--aqua), var(--teal));
   cursor: pointer;
   font: inherit;
   font-weight: 850;
@@ -53,10 +57,10 @@
 
 .form p {
   margin: 0;
-  color: #657483;
+  color: var(--muted);
 }
 
 .form a {
-  color: #007a70;
+  color: var(--aqua);
   font-weight: 850;
 }

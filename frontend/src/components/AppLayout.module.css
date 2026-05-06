@@ -1,21 +1,27 @@
 .shell {
   min-height: 100vh;
   background: transparent;
-  color: #17202a;
+  color: var(--text);
 }
 
 .header {
   position: sticky;
-  top: 0;
+  top: 16px;
   z-index: 10;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 18px;
-  padding: 14px clamp(18px, 4vw, 56px);
-  border-bottom: 1px solid #e1e6ec;
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(14px);
+  gap: 22px;
+  width: min(1240px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: rgba(7, 17, 31, 0.78);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.34),
+    0 0 44px rgba(24, 199, 193, 0.07);
+  backdrop-filter: blur(22px);
 }
 
 .brand,
@@ -28,8 +34,9 @@
 .brand {
   display: flex;
   align-items: center;
-  width: 220px;
-  min-width: 180px;
+  width: 230px;
+  min-width: 190px;
+  filter: drop-shadow(0 0 18px rgba(24, 199, 193, 0.24));
 }
 
 .brand img {
@@ -54,25 +61,32 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: #4b5a68;
-  font-weight: 650;
-  border-radius: 8px;
-  padding: 9px 10px;
+  color: var(--muted);
+  font-weight: 720;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 10px 12px;
   transition:
     background 160ms ease,
-    color 160ms ease;
+    border-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
 }
 
 .nav a[aria-current="page"],
 .profileLink[aria-current="page"] {
-  color: #007a70;
-  background: #e7f4f1;
+  color: var(--text);
+  border-color: rgba(24, 199, 193, 0.22);
+  background: linear-gradient(135deg, rgba(24, 199, 193, 0.16), rgba(200, 178, 115, 0.06));
+  box-shadow: inset 0 0 18px rgba(24, 199, 193, 0.08);
 }
 
 .nav a:hover,
 .profileLink:hover {
-  color: #007a70;
-  background: #eef5f3;
+  color: var(--aqua);
+  border-color: rgba(24, 199, 193, 0.2);
+  background: rgba(255, 255, 255, 0.04);
+  transform: translateY(-1px);
 }
 
 .linkButton,
@@ -87,14 +101,14 @@
 
 .linkButton {
   padding: 9px 12px;
-  color: #2c3946;
+  color: var(--text);
 }
 
 .primaryButton {
-  padding: 10px 14px;
-  color: #ffffff;
-  background: #007a70;
-  box-shadow: 0 8px 20px rgba(0, 122, 112, 0.18);
+  padding: 11px 16px;
+  color: #06111f;
+  background: linear-gradient(135deg, var(--aqua), var(--teal));
+  box-shadow: 0 14px 34px rgba(24, 199, 193, 0.25);
 }
 
 .iconButton {
@@ -103,22 +117,24 @@
   justify-content: center;
   width: 38px;
   height: 38px;
-  color: #394957;
-  background: #eef2f5;
+  color: var(--text);
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.06);
   transition:
     background 160ms ease,
     transform 160ms ease;
 }
 
 .iconButton:hover {
-  background: #dfe8ed;
+  color: var(--aqua);
+  background: rgba(24, 199, 193, 0.1);
   transform: translateY(-1px);
 }
 
 .main {
   width: min(1180px, calc(100% - 32px));
   margin: 0 auto;
-  padding: 28px 0 56px;
+  padding: 44px 0 64px;
 }
 
 .footer {
@@ -129,15 +145,15 @@
   width: min(1180px, calc(100% - 32px));
   margin: 0 auto;
   padding: 26px 0 34px;
-  border-top: 1px solid #dfe6ed;
-  color: #586775;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
 }
 
 .footerBrand {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: #17202a;
+  color: var(--text);
   font-weight: 850;
   text-decoration: none;
 }
@@ -145,6 +161,7 @@
 .footerBrand img {
   width: 28px;
   height: 28px;
+  filter: drop-shadow(0 0 14px rgba(24, 199, 193, 0.25));
 }
 
 .footer p {
@@ -158,19 +175,20 @@
 }
 
 .footer nav a {
-  color: #4b5a68;
+  color: var(--muted);
   font-weight: 800;
   text-decoration: none;
 }
 
 .footer nav a:hover {
-  color: #007a70;
+  color: var(--aqua);
 }
 
 @media (max-width: 920px) {
   .header {
     grid-template-columns: 1fr;
     align-items: start;
+    top: 10px;
   }
 
   .nav {
@@ -185,7 +203,8 @@
 
 @media (max-width: 560px) {
   .header {
-    padding: 16px;
+    width: min(100% - 20px, 1180px);
+    padding: 14px;
   }
 
   .brand {
