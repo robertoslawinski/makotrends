@@ -56,10 +56,6 @@ export default function Home() {
             <strong>{openCount}</strong>
             <span>Open markets</span>
           </div>
-          <div className={styles.stat}>
-            <strong>{predictions.length}</strong>
-            <span>Total signals</span>
-          </div>
         </div>
       </div>
 

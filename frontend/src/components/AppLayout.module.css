@@ -31,14 +31,27 @@
 .brand {
   display: flex;
   align-items: center;
-  width: 246px;
-  min-width: 212px;
+  gap: 10px;
+  min-width: 178px;
 }
 
 .brand img {
   display: block;
-  width: 100%;
-  height: auto;
+  width: 46px;
+  height: 46px;
+}
+
+.brand span {
+  color: var(--text);
+  font-size: 24px;
+  font-weight: 880;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.brand strong {
+  color: var(--gold);
+  font-weight: 880;
 }
 
 .nav,
@@ -205,7 +218,7 @@
   }
 
   .brand {
-    width: 220px;
+    min-width: 0;
   }
 
   .nav a,

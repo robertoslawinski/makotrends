@@ -1,7 +1,6 @@
 import { BookOpen, Info, LogOut, Shield, Trophy, User } from "lucide-react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import logo from "../assets/makotrends-logo.svg";
 import mark from "../assets/makotrends-mark.svg";
 import styles from "./AppLayout.module.css";
 
@@ -18,7 +17,10 @@ export default function AppLayout() {
     <div className={styles.shell}>
       <header className={styles.header}>
         <NavLink to="/" className={styles.brand}>
-          <img src={logo} alt="MakoTrends" />
+          <img src={mark} alt="" aria-hidden="true" />
+          <span>
+            Mako<strong>Trends</strong>
+          </span>
         </NavLink>
         <nav className={styles.nav}>
           <NavLink to="/">Markets</NavLink>
