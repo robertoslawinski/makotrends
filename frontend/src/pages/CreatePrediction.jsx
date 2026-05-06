@@ -9,6 +9,10 @@ const initialForm = {
   description: "",
   category: "",
   deadline: "",
+  resolutionDate: "",
+  resolutionSource: "",
+  resolutionCriteria: "",
+  pointsValue: 10,
   status: "open"
 };
 
@@ -33,6 +37,10 @@ export default function CreatePrediction({ editMode = false }) {
         description: data.description,
         category: data.category,
         deadline: toDatetimeLocal(data.deadline),
+        resolutionDate: data.resolutionDate ? toDatetimeLocal(data.resolutionDate) : "",
+        resolutionSource: data.resolutionSource || "",
+        resolutionCriteria: data.resolutionCriteria || "",
+        pointsValue: data.pointsValue || 10,
         status: data.status
       });
     };
@@ -46,7 +54,11 @@ export default function CreatePrediction({ editMode = false }) {
     try {
       const payload = {
         ...form,
-        deadline: new Date(form.deadline).toISOString()
+        deadline: new Date(form.deadline).toISOString(),
+        resolutionDate: form.resolutionDate
+          ? new Date(form.resolutionDate).toISOString()
+          : null,
+        pointsValue: Number(form.pointsValue)
       };
 
       if (editMode) {
@@ -98,6 +110,52 @@ export default function CreatePrediction({ editMode = false }) {
             required
             value={form.deadline}
             onChange={(event) => setForm({ ...form, deadline: event.target.value })}
+          />
+        </label>
+        <div className={styles.grid}>
+          <label>
+            Resolution date
+            <input
+              type="datetime-local"
+              value={form.resolutionDate}
+              onChange={(event) =>
+                setForm({ ...form, resolutionDate: event.target.value })
+              }
+            />
+          </label>
+          <label>
+            Points
+            <input
+              type="number"
+              min="1"
+              max="100"
+              required
+              value={form.pointsValue}
+              onChange={(event) =>
+                setForm({ ...form, pointsValue: event.target.value })
+              }
+            />
+          </label>
+        </div>
+        <label>
+          Resolution source
+          <input
+            required
+            value={form.resolutionSource}
+            onChange={(event) =>
+              setForm({ ...form, resolutionSource: event.target.value })
+            }
+          />
+        </label>
+        <label>
+          Resolution criteria
+          <textarea
+            required
+            minLength="20"
+            value={form.resolutionCriteria}
+            onChange={(event) =>
+              setForm({ ...form, resolutionCriteria: event.target.value })
+            }
           />
         </label>
         {editMode && (

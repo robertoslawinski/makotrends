@@ -1,0 +1,66 @@
+.page {
+  display: grid;
+  gap: 24px;
+}
+
+.hero {
+  display: grid;
+  gap: 12px;
+  max-width: 900px;
+  padding: 22px 0;
+}
+
+.hero span {
+  color: #007a70;
+  font-size: 13px;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(40px, 7vw, 72px);
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.hero p {
+  max-width: 760px;
+  margin: 0;
+  color: #536371;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.grid article,
+.panel {
+  display: grid;
+  gap: 12px;
+  padding: 22px;
+  border: 1px solid #dfe6ed;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 12px 32px rgba(23, 32, 42, 0.06);
+}
+
+.grid svg {
+  color: #007a70;
+}
+
+.grid h2,
+.panel h2 {
+  margin: 0;
+}
+
+.grid p,
+.panel p {
+  margin: 0;
+  color: #586775;
+  line-height: 1.55;
+}

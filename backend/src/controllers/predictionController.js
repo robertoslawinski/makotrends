@@ -2,8 +2,6 @@ import Prediction from "../models/Prediction.js";
 import User from "../models/User.js";
 import Vote from "../models/Vote.js";
 
-const POINTS_PER_CORRECT_VOTE = 10;
-
 const closeExpiredPredictions = async () => {
   await Prediction.updateMany(
     { status: "open", deadline: { $lte: new Date() } },
@@ -11,14 +9,33 @@ const closeExpiredPredictions = async () => {
   );
 };
 
-const validatePredictionInput = ({ title, description, category, deadline }) => {
+const validatePredictionInput = ({
+  title,
+  description,
+  category,
+  deadline,
+  resolutionCriteria,
+  resolutionSource,
+  pointsValue
+}) => {
   if (!title || !description || !category || !deadline) {
     throw new Error("Title, description, category and deadline are required");
+  }
+
+  if (!resolutionCriteria || !resolutionSource) {
+    throw new Error("Resolution criteria and source are required");
   }
 
   const deadlineDate = new Date(deadline);
   if (Number.isNaN(deadlineDate.getTime())) {
     throw new Error("Deadline must be a valid date");
+  }
+
+  if (pointsValue !== undefined) {
+    const parsedPoints = Number(pointsValue);
+    if (!Number.isInteger(parsedPoints) || parsedPoints < 1 || parsedPoints > 100) {
+      throw new Error("Points value must be an integer from 1 to 100");
+    }
   }
 
   return deadlineDate;
@@ -110,6 +127,10 @@ export const createPrediction = async (req, res, next) => {
       description: req.body.description,
       category: req.body.category,
       deadline: deadlineDate,
+      resolutionDate: req.body.resolutionDate || null,
+      resolutionSource: req.body.resolutionSource,
+      resolutionCriteria: req.body.resolutionCriteria,
+      pointsValue: req.body.pointsValue || 10,
       createdBy: req.user._id
     });
 
@@ -134,7 +155,15 @@ export const updatePrediction = async (req, res, next) => {
     }
 
     const updates = {};
-    ["title", "description", "category", "status"].forEach((field) => {
+    [
+      "title",
+      "description",
+      "category",
+      "status",
+      "resolutionSource",
+      "resolutionCriteria",
+      "pointsValue"
+    ].forEach((field) => {
       if (req.body[field] !== undefined) updates[field] = req.body[field];
     });
 
@@ -145,6 +174,17 @@ export const updatePrediction = async (req, res, next) => {
         throw new Error("Deadline must be a valid date");
       }
       updates.deadline = deadlineDate;
+    }
+
+    if (req.body.resolutionDate !== undefined) {
+      const resolutionDate = req.body.resolutionDate
+        ? new Date(req.body.resolutionDate)
+        : null;
+      if (resolutionDate && Number.isNaN(resolutionDate.getTime())) {
+        res.status(400);
+        throw new Error("Resolution date must be a valid date");
+      }
+      updates.resolutionDate = resolutionDate;
     }
 
     const updatedPrediction = await Prediction.findByIdAndUpdate(
@@ -199,6 +239,7 @@ export const resolvePrediction = async (req, res, next) => {
     }
 
     const votes = await Vote.find({ predictionId: prediction._id });
+    const pointsForCorrectVote = prediction.pointsValue || 10;
 
     const voteUpdates = [];
     const userUpdates = new Map();
@@ -211,7 +252,7 @@ export const resolvePrediction = async (req, res, next) => {
           update: {
             $set: {
               isCorrect,
-              pointsEarned: isCorrect ? POINTS_PER_CORRECT_VOTE : 0
+              pointsEarned: isCorrect ? pointsForCorrectVote : 0
             }
           }
         }
@@ -226,7 +267,7 @@ export const resolvePrediction = async (req, res, next) => {
       current.totalPredictions += 1;
       if (isCorrect) {
         current.correctPredictions += 1;
-        current.points += POINTS_PER_CORRECT_VOTE;
+        current.points += pointsForCorrectVote;
       }
       userUpdates.set(userId, current);
     });

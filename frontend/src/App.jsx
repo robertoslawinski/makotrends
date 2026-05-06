@@ -2,6 +2,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import AppLayout from "./components/AppLayout";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminDashboard from "./pages/AdminDashboard";
+import About from "./pages/About";
 import CreatePrediction from "./pages/CreatePrediction";
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
@@ -9,6 +10,7 @@ import Login from "./pages/Login";
 import PredictionDetails from "./pages/PredictionDetails";
 import Profile from "./pages/Profile";
 import Ranking from "./pages/Ranking";
+import Rules from "./pages/Rules";
 import Signup from "./pages/Signup";
 
 const AdminRoute = ({ children }) => (
@@ -22,6 +24,8 @@ export default function App() {
         <Route index element={<Home />} />
         <Route path="/predictions/:id" element={<PredictionDetails />} />
         <Route path="/ranking" element={<Ranking />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/rules" element={<Rules />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route

@@ -1,4 +1,4 @@
-import { Activity, LogOut, Shield, Trophy, User } from "lucide-react";
+import { Activity, BookOpen, Info, LogOut, Shield, Trophy, User } from "lucide-react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import styles from "./AppLayout.module.css";
@@ -23,6 +23,12 @@ export default function AppLayout() {
           <NavLink to="/">Markets</NavLink>
           <NavLink to="/ranking">
             <Trophy size={17} /> Ranking
+          </NavLink>
+          <NavLink to="/rules">
+            <BookOpen size={17} /> Rules
+          </NavLink>
+          <NavLink to="/about">
+            <Info size={17} /> About
           </NavLink>
           {user && <NavLink to="/dashboard">Dashboard</NavLink>}
           {user?.role === "admin" && (

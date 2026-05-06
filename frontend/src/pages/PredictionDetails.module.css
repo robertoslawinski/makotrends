@@ -60,6 +60,57 @@
   text-transform: capitalize;
 }
 
+.resolution {
+  display: grid;
+  gap: 14px;
+  margin-top: 4px;
+  padding-top: 20px;
+  border-top: 1px solid #e5ebf0;
+}
+
+.resolution > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #007a70;
+}
+
+.resolution h2 {
+  margin: 0;
+  color: #17202a;
+  font-size: 24px;
+}
+
+.resolution p {
+  color: #3d4c59;
+}
+
+.resolution dl {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.resolution dl div {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 12px;
+}
+
+.resolution dt {
+  color: #647482;
+  font-weight: 800;
+}
+
+.resolution dd {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0;
+  color: #17202a;
+  font-weight: 750;
+}
+
 .voteButtons {
   display: grid;
   grid-template-columns: 1fr 1fr;

@@ -38,6 +38,28 @@ const predictionSchema = new mongoose.Schema(
       type: Date,
       required: true
     },
+    resolutionDate: {
+      type: Date,
+      default: null
+    },
+    resolutionSource: {
+      type: String,
+      trim: true,
+      maxlength: 300,
+      default: ""
+    },
+    resolutionCriteria: {
+      type: String,
+      trim: true,
+      maxlength: 1800,
+      default: ""
+    },
+    pointsValue: {
+      type: Number,
+      default: 10,
+      min: 1,
+      max: 100
+    },
     status: {
       type: String,
       enum: ["open", "closed", "resolved"],
