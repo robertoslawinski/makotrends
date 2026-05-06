@@ -28,15 +28,14 @@
 .brand {
   display: flex;
   align-items: center;
-  gap: 9px;
-  font-weight: 800;
-  font-size: 22px;
-  letter-spacing: 0;
-  white-space: nowrap;
+  width: 220px;
+  min-width: 180px;
 }
 
-.brand svg {
-  color: #007a70;
+.brand img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .nav,
@@ -143,8 +142,9 @@
   text-decoration: none;
 }
 
-.footerBrand svg {
-  color: #007a70;
+.footerBrand img {
+  width: 28px;
+  height: 28px;
 }
 
 .footer p {
@@ -189,7 +189,7 @@
   }
 
   .brand {
-    font-size: 24px;
+    width: 198px;
   }
 
   .nav,

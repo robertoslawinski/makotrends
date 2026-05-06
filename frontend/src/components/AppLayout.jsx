@@ -1,6 +1,8 @@
-import { Activity, BookOpen, Info, LogOut, Shield, Trophy, User } from "lucide-react";
+import { BookOpen, Info, LogOut, Shield, Trophy, User } from "lucide-react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import logo from "../assets/makotrends-logo.svg";
+import mark from "../assets/makotrends-mark.svg";
 import styles from "./AppLayout.module.css";
 
 export default function AppLayout() {
@@ -16,8 +18,7 @@ export default function AppLayout() {
     <div className={styles.shell}>
       <header className={styles.header}>
         <NavLink to="/" className={styles.brand}>
-          <Activity size={24} />
-          <span>MakoTrends</span>
+          <img src={logo} alt="MakoTrends" />
         </NavLink>
         <nav className={styles.nav}>
           <NavLink to="/">Markets</NavLink>
@@ -66,7 +67,7 @@ export default function AppLayout() {
       <footer className={styles.footer}>
         <div>
           <NavLink to="/" className={styles.footerBrand}>
-            <Activity size={20} />
+            <img src={mark} alt="" aria-hidden="true" />
             <span>MakoTrends</span>
           </NavLink>
           <p>Points-only trend prediction game. No real-money wagering or payouts.</p>
