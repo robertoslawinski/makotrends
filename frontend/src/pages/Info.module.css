@@ -47,7 +47,7 @@
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: var(--surface);
-  box-shadow: 0 20px 58px rgba(0, 0, 0, 0.26);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.16);
 }
 
 .grid svg {
@@ -79,7 +79,7 @@
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: var(--surface);
-  box-shadow: 0 20px 58px rgba(0, 0, 0, 0.26);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.16);
 }
 
 .stack h2 {

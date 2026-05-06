@@ -11,10 +11,8 @@
   padding: 28px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  background:
-    linear-gradient(145deg, rgba(24, 199, 193, 0.08), transparent 44%),
-    var(--surface);
-  box-shadow: 0 26px 78px rgba(0, 0, 0, 0.32);
+  background: var(--surface);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.2);
 }
 
 .form h1 {
@@ -49,7 +47,7 @@
   border: 0;
   border-radius: 999px;
   color: #07111f;
-  background: linear-gradient(135deg, var(--aqua), var(--teal));
+  background: var(--teal);
   cursor: pointer;
   font: inherit;
   font-weight: 850;

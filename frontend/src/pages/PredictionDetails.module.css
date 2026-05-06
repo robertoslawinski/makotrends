@@ -9,10 +9,8 @@
 .panel {
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  background:
-    linear-gradient(160deg, rgba(24, 199, 193, 0.07), transparent 38%),
-    var(--surface);
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.3);
+  background: var(--surface);
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.2);
 }
 
 .market {
@@ -129,17 +127,17 @@
   border: 0;
   border-radius: 999px;
   color: #07111f;
-  background: linear-gradient(135deg, var(--aqua), var(--teal));
+  background: var(--teal);
   cursor: pointer;
   font: inherit;
   font-weight: 850;
-  box-shadow: 0 14px 34px rgba(24, 199, 193, 0.2);
+  box-shadow: none;
 }
 
 .voteButtons button:nth-child(2) {
   color: var(--text);
-  background: linear-gradient(135deg, #a74338, #d96b5e);
-  box-shadow: 0 14px 34px rgba(224, 91, 79, 0.18);
+  background: #a84f45;
+  box-shadow: none;
 }
 
 .voteButtons button:disabled {

@@ -30,10 +30,10 @@
   border-radius: 999px;
   padding: 12px 18px;
   color: #07111f;
-  background: linear-gradient(135deg, var(--aqua), var(--teal));
+  background: var(--teal);
   font-weight: 850;
   text-decoration: none;
-  box-shadow: 0 18px 44px rgba(24, 199, 193, 0.24);
+  box-shadow: none;
 }
 
 .stats {
@@ -43,36 +43,20 @@
 }
 
 .stats article {
-  position: relative;
   display: grid;
   gap: 10px;
   padding: 24px;
-  overflow: hidden;
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  background:
-    linear-gradient(155deg, rgba(24, 199, 193, 0.12), transparent 42%),
-    var(--surface);
-  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.28);
-}
-
-.stats article::after {
-  position: absolute;
-  inset: auto 18px 18px auto;
-  width: 72px;
-  height: 72px;
-  content: "";
-  border-radius: 999px;
-  background: rgba(24, 199, 193, 0.08);
-  filter: blur(10px);
+  background: var(--surface);
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.18);
 }
 
 .stats svg {
-  color: var(--aqua);
+  color: var(--gold);
 }
 
 .stats strong {
-  position: relative;
   font-size: 44px;
   letter-spacing: 0;
   color: var(--text);
@@ -90,7 +74,6 @@
 }
 
 .stats span {
-  position: relative;
   color: var(--muted);
   font-weight: 750;
 }

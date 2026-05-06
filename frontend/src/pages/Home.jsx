@@ -1,7 +1,6 @@
 import { Filter } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import api from "../api/client";
-import brandImage from "../assets/makotrends-brand.jpg";
 import PredictionCard from "../components/PredictionCard";
 import styles from "./Home.module.css";
 
@@ -52,11 +51,14 @@ export default function Home() {
             <a href="/rules">How scoring works</a>
           </div>
         </div>
-        <div className={styles.heroVisual}>
-          <img src={brandImage} alt="MakoTrends shark signal identity" />
+        <div className={styles.heroMetrics} aria-label="Market overview">
           <div className={styles.stat}>
             <strong>{openCount}</strong>
-            <span>open markets</span>
+            <span>Open markets</span>
+          </div>
+          <div className={styles.stat}>
+            <strong>{predictions.length}</strong>
+            <span>Total signals</span>
           </div>
         </div>
       </div>

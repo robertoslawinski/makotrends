@@ -12,7 +12,7 @@
 }
 
 .track {
-  height: 10px;
+  height: 8px;
   overflow: hidden;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.08);
@@ -25,13 +25,13 @@
 }
 
 .yes {
-  background: linear-gradient(90deg, var(--teal), var(--aqua));
-  box-shadow: 0 0 18px rgba(24, 199, 193, 0.32);
+  background: var(--teal);
+  box-shadow: none;
 }
 
 .no {
-  background: linear-gradient(90deg, #b6483e, var(--gold));
-  box-shadow: 0 0 18px rgba(200, 178, 115, 0.22);
+  background: #b85b4f;
+  box-shadow: none;
 }
 
 .wrap small {
