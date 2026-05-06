@@ -64,3 +64,34 @@
   color: #586775;
   line-height: 1.55;
 }
+
+.stack {
+  display: grid;
+  gap: 16px;
+  max-width: 920px;
+}
+
+.stack article {
+  display: grid;
+  gap: 10px;
+  padding: 22px;
+  border: 1px solid #dfe6ed;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 12px 32px rgba(23, 32, 42, 0.06);
+}
+
+.stack h2 {
+  margin: 0;
+}
+
+.stack p,
+.stack li {
+  color: #586775;
+  line-height: 1.6;
+}
+
+.stack p,
+.stack ul {
+  margin: 0;
+}

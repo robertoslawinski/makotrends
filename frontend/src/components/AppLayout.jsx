@@ -63,6 +63,21 @@ export default function AppLayout() {
       <main className={styles.main}>
         <Outlet />
       </main>
+      <footer className={styles.footer}>
+        <div>
+          <NavLink to="/" className={styles.footerBrand}>
+            <Activity size={20} />
+            <span>MakoTrends</span>
+          </NavLink>
+          <p>Points-only trend prediction game. No real-money wagering or payouts.</p>
+        </div>
+        <nav>
+          <NavLink to="/rules">Rules</NavLink>
+          <NavLink to="/about">About</NavLink>
+          <NavLink to="/privacy">Privacy</NavLink>
+          <NavLink to="/terms">Terms</NavLink>
+        </nav>
+      </footer>
     </div>
   );
 }

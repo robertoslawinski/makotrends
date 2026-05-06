@@ -8,10 +8,12 @@ import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import PredictionDetails from "./pages/PredictionDetails";
+import Privacy from "./pages/Privacy";
 import Profile from "./pages/Profile";
 import Ranking from "./pages/Ranking";
 import Rules from "./pages/Rules";
 import Signup from "./pages/Signup";
+import Terms from "./pages/Terms";
 
 const AdminRoute = ({ children }) => (
   <ProtectedRoute adminOnly>{children}</ProtectedRoute>
@@ -26,6 +28,8 @@ export default function App() {
         <Route path="/ranking" element={<Ranking />} />
         <Route path="/about" element={<About />} />
         <Route path="/rules" element={<Rules />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/terms" element={<Terms />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route
