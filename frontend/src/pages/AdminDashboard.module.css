@@ -102,6 +102,93 @@
   background: rgba(24, 199, 193, 0.08);
 }
 
+.confirmation {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(7, 17, 31, 0.72);
+  backdrop-filter: blur(12px);
+}
+
+.confirmationCard {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 16px;
+  width: min(620px, 100%);
+  padding: 22px;
+  border: 1px solid var(--border-strong);
+  border-radius: 16px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018)),
+    var(--surface);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.42);
+}
+
+.warningIcon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  color: var(--gold);
+  border: 1px solid rgba(200, 178, 115, 0.18);
+  border-radius: 12px;
+  background: rgba(200, 178, 115, 0.08);
+}
+
+.confirmationCard h2 {
+  margin: 0 0 8px;
+  font-size: 1.35rem;
+}
+
+.confirmationCard p {
+  margin: 0 0 10px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.confirmationCard strong {
+  color: var(--text);
+}
+
+.confirmActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 18px;
+}
+
+.confirmActions button {
+  min-height: 42px;
+  padding: 0 16px;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid var(--border-strong);
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 850;
+}
+
+.confirmActions button:last-child {
+  color: #07111f;
+  background: var(--teal);
+  border-color: transparent;
+}
+
+.confirmActions .danger {
+  color: var(--text);
+  background: rgba(224, 91, 79, 0.22);
+  border-color: rgba(224, 91, 79, 0.36);
+}
+
+.confirmActions button:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
+
 @media (max-width: 820px) {
   .header {
     align-items: stretch;
@@ -121,6 +208,18 @@
   .list button,
   .list select {
     width: 100%;
+  }
+
+  .confirmationCard {
+    grid-template-columns: 1fr;
+  }
+
+  .confirmActions {
+    justify-content: stretch;
+  }
+
+  .confirmActions button {
+    flex: 1 1 180px;
   }
 }
 
