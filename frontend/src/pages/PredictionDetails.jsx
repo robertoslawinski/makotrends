@@ -1,6 +1,13 @@
-import { CheckCircle2, FileCheck2, Link as LinkIcon, XCircle } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  CheckCircle2,
+  FileCheck2,
+  Link as LinkIcon,
+  XCircle
+} from "lucide-react";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import api from "../api/client";
 import StateMessage from "../components/StateMessage";
 import VoteProgress from "../components/VoteProgress";
@@ -15,6 +22,7 @@ export default function PredictionDetails() {
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(true);
+  const [openMarkets, setOpenMarkets] = useState([]);
 
   const loadPrediction = async () => {
     setLoading(true);
@@ -34,6 +42,19 @@ export default function PredictionDetails() {
 
   useEffect(() => {
     loadPrediction();
+  }, [id]);
+
+  useEffect(() => {
+    const loadOpenMarkets = async () => {
+      try {
+        const { data } = await api.get("/api/predictions?status=open");
+        setOpenMarkets(data);
+      } catch {
+        setOpenMarkets([]);
+      }
+    };
+
+    loadOpenMarkets();
   }, [id]);
 
   const vote = async (selectedOption) => {
@@ -80,6 +101,16 @@ export default function PredictionDetails() {
 
   const alreadyVoted = Boolean(prediction.viewerVote);
   const votingOpen = prediction.status === "open" && new Date(prediction.deadline) > new Date();
+  const otherOpenMarkets = openMarkets.filter((market) => market._id !== prediction._id);
+  const currentOpenIndex = openMarkets.findIndex((market) => market._id === prediction._id);
+  const nextMarket =
+    otherOpenMarkets.length === 0
+      ? null
+      : openMarkets[
+          currentOpenIndex >= 0
+            ? (currentOpenIndex + 1) % openMarkets.length
+            : 0
+        ];
 
   return (
     <section className={styles.page}>
@@ -137,6 +168,18 @@ export default function PredictionDetails() {
           </button>
           <button disabled={!votingOpen || alreadyVoted} onClick={() => vote("no")}>
             <XCircle size={20} /> No
+          </button>
+        </div>
+        <div className={styles.flowActions}>
+          <Link to="/">
+            <ArrowLeft size={18} /> Back to markets
+          </Link>
+          <button
+            type="button"
+            disabled={!nextMarket || nextMarket._id === prediction._id}
+            onClick={() => nextMarket && navigate(`/predictions/${nextMarket._id}`)}
+          >
+            Next market <ArrowRight size={18} />
           </button>
         </div>
         <dl>
