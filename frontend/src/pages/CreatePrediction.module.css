@@ -74,7 +74,17 @@
 }
 
 @media (max-width: 620px) {
+  .form {
+    gap: 14px;
+    padding: 18px;
+    border-radius: 10px;
+  }
+
   .grid {
     grid-template-columns: 1fr;
+  }
+
+  .form button {
+    width: 100%;
   }
 }

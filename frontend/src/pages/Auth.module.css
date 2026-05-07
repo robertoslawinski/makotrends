@@ -62,3 +62,19 @@
   color: var(--aqua);
   font-weight: 850;
 }
+
+@media (max-width: 520px) {
+  .authPage {
+    min-height: auto;
+    padding: 24px 0;
+  }
+
+  .form {
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  .form button {
+    width: 100%;
+  }
+}

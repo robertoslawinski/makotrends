@@ -198,39 +198,74 @@
 
 @media (max-width: 920px) {
   .header {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr auto;
     align-items: start;
     top: 10px;
+    gap: 10px 14px;
   }
 
   .nav {
+    grid-column: 1 / -1;
     justify-content: flex-start;
+    order: 3;
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    scrollbar-width: none;
   }
 
-  .nav,
+  .nav::-webkit-scrollbar {
+    display: none;
+  }
+
   .actions {
     flex-wrap: wrap;
+    justify-content: flex-end;
   }
 }
 
 @media (max-width: 560px) {
   .header {
     width: min(100% - 20px, 1180px);
-    padding: 12px;
+    padding: 10px;
+    border-radius: 14px;
   }
 
   .brand {
     min-width: 0;
+    gap: 8px;
+  }
+
+  .brand img {
+    width: 64px;
+  }
+
+  .brand span {
+    font-size: 20px;
   }
 
   .nav a,
   .profileLink {
-    padding: 8px 7px;
+    flex: 0 0 auto;
+    padding: 8px 9px;
+    font-size: 13px;
+  }
+
+  .linkButton,
+  .primaryButton {
+    padding: 8px 11px;
+    font-size: 13px;
+  }
+
+  .iconButton {
+    width: 36px;
+    height: 36px;
   }
 
   .main {
     width: min(100% - 20px, 1180px);
-    padding-top: 28px;
+    padding-top: 24px;
+    padding-bottom: 54px;
   }
 
   .footer {

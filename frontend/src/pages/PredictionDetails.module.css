@@ -177,3 +177,60 @@
     position: static;
   }
 }
+
+@media (max-width: 560px) {
+  .page {
+    gap: 14px;
+  }
+
+  .market,
+  .panel {
+    border-radius: 10px;
+  }
+
+  .market {
+    gap: 16px;
+    padding: 18px;
+  }
+
+  .market h1 {
+    font-size: clamp(30px, 11vw, 42px);
+    line-height: 1.08;
+  }
+
+  .market p {
+    font-size: 16px;
+  }
+
+  .meta {
+    flex-wrap: wrap;
+    font-size: 14px;
+  }
+
+  .panel {
+    padding: 18px;
+  }
+
+  .voteButtons {
+    grid-template-columns: 1fr;
+  }
+
+  .resolution dl div {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .resolution dd {
+    align-items: flex-start;
+  }
+
+  .panel dl div {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .panel dd {
+    text-align: left;
+  }
+}

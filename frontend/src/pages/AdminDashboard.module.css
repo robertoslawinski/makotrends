@@ -103,7 +103,33 @@
 }
 
 @media (max-width: 820px) {
+  .header {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .header a {
+    justify-content: center;
+  }
+
   .list article {
     grid-template-columns: 1fr;
+  }
+
+  .list a,
+  .list button,
+  .list select {
+    width: 100%;
+  }
+}
+
+@media (max-width: 520px) {
+  .header h1 {
+    font-size: clamp(36px, 13vw, 48px);
+  }
+
+  .list article {
+    padding: 14px;
   }
 }
