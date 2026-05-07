@@ -1,5 +1,6 @@
 import { CalendarDays } from "lucide-react";
 import { Link } from "react-router-dom";
+import { trackEvent } from "../utils/analytics";
 import styles from "./PredictionCard.module.css";
 import VoteProgress from "./VoteProgress";
 
@@ -18,7 +19,18 @@ export default function PredictionCard({ prediction }) {
           <CalendarDays size={16} />
           {new Date(prediction.deadline).toLocaleDateString()}
         </span>
-        <Link to={`/predictions/${prediction._id}`}>View market</Link>
+        <Link
+          to={`/predictions/${prediction._id}`}
+          onClick={() =>
+            trackEvent("market_opened", {
+              market_id: prediction._id,
+              market_status: prediction.status,
+              market_category: prediction.category
+            })
+          }
+        >
+          View market
+        </Link>
       </div>
     </article>
   );

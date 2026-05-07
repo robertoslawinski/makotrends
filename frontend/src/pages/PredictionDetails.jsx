@@ -12,6 +12,7 @@ import api from "../api/client";
 import StateMessage from "../components/StateMessage";
 import VoteProgress from "../components/VoteProgress";
 import { useAuth } from "../context/AuthContext";
+import { trackEvent } from "../utils/analytics";
 import styles from "./PredictionDetails.module.css";
 
 export default function PredictionDetails() {
@@ -67,6 +68,10 @@ export default function PredictionDetails() {
     setMessage("");
     try {
       await api.post(`/api/predictions/${id}/vote`, { selectedOption });
+      trackEvent("vote_submitted", {
+        market_id: id,
+        selected_option: selectedOption
+      });
       setMessage("Vote locked in.");
       await loadPrediction();
     } catch (err) {

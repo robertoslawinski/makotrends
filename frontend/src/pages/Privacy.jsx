@@ -37,6 +37,16 @@ export default function Privacy() {
           </p>
         </article>
         <article>
+          <h2>Analytics</h2>
+          <p>
+            MakoTrends may use privacy-conscious traffic analytics or Google
+            Analytics to understand page views, market interactions, referral
+            sources, and basic device/browser information. Analytics events are
+            used to improve the product experience and are not intended to store
+            passwords or private account content.
+          </p>
+        </article>
+        <article>
           <h2>Data deletion</h2>
           <p>
             During the MVP period, deletion requests can be handled manually by
