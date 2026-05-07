@@ -155,57 +155,59 @@ export default function PredictionDetails() {
         </section>
       </article>
 
-      <aside className={styles.panel}>
-        <h2>Your prediction</h2>
-        {alreadyVoted ? (
-          <p className={styles.voted}>You voted {prediction.viewerVote.selectedOption}.</p>
-        ) : (
-          <p>Pick a side before the deadline.</p>
-        )}
-        <div className={styles.voteButtons}>
-          <button disabled={!votingOpen || alreadyVoted} onClick={() => vote("yes")}>
-            <CheckCircle2 size={20} /> Yes
-          </button>
-          <button disabled={!votingOpen || alreadyVoted} onClick={() => vote("no")}>
-            <XCircle size={20} /> No
-          </button>
+      <aside className={styles.side}>
+        <div className={styles.panel}>
+          <h2>Your prediction</h2>
+          {alreadyVoted ? (
+            <p className={styles.voted}>You voted {prediction.viewerVote.selectedOption}.</p>
+          ) : (
+            <p>Pick a side before the deadline.</p>
+          )}
+          <div className={styles.voteButtons}>
+            <button disabled={!votingOpen || alreadyVoted} onClick={() => vote("yes")}>
+              <CheckCircle2 size={20} /> Yes
+            </button>
+            <button disabled={!votingOpen || alreadyVoted} onClick={() => vote("no")}>
+              <XCircle size={20} /> No
+            </button>
+          </div>
+          <dl>
+            <div>
+              <dt>Deadline</dt>
+              <dd>{new Date(prediction.deadline).toLocaleString()}</dd>
+            </div>
+            <div>
+              <dt>Total votes</dt>
+              <dd>{prediction.totalVotes}</dd>
+            </div>
+            <div>
+              <dt>Reward</dt>
+              <dd>{prediction.pointsValue || 10} pts</dd>
+            </div>
+          </dl>
+          {message && (
+            <StateMessage type="success" title="Vote confirmed" compact>
+              {message}
+            </StateMessage>
+          )}
+          {error && (
+            <StateMessage type="error" title="Action could not be completed" compact>
+              {error}
+            </StateMessage>
+          )}
         </div>
         <div className={styles.flowActions}>
           <Link to="/">
-            <ArrowLeft size={18} /> Back to markets
+            <ArrowLeft size={18} /> Back
           </Link>
           <button
             type="button"
             disabled={!nextMarket || nextMarket._id === prediction._id}
             onClick={() => nextMarket && navigate(`/predictions/${nextMarket._id}`)}
           >
-            Next market <ArrowRight size={18} />
+            Next <ArrowRight size={18} />
           </button>
         </div>
-        <dl>
-          <div>
-            <dt>Deadline</dt>
-            <dd>{new Date(prediction.deadline).toLocaleString()}</dd>
-          </div>
-          <div>
-            <dt>Total votes</dt>
-            <dd>{prediction.totalVotes}</dd>
-          </div>
-          <div>
-            <dt>Reward</dt>
-            <dd>{prediction.pointsValue || 10} pts</dd>
-          </div>
-        </dl>
-        {message && (
-          <StateMessage type="success" title="Vote confirmed" compact>
-            {message}
-          </StateMessage>
-        )}
-        {error && (
-          <StateMessage type="error" title="Action could not be completed" compact>
-            {error}
-          </StateMessage>
-        )}
       </aside>
     </section>
   );

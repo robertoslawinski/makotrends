@@ -42,12 +42,17 @@
   text-transform: capitalize;
 }
 
+.side {
+  display: grid;
+  gap: 16px;
+  position: sticky;
+  top: 110px;
+}
+
 .panel {
   display: grid;
   gap: 16px;
   padding: 22px;
-  position: sticky;
-  top: 110px;
 }
 
 .panel h2 {
@@ -149,6 +154,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
+  padding: 0 2px;
 }
 
 .flowActions a,
@@ -160,7 +166,7 @@
   min-height: 42px;
   padding: 0 13px;
   color: var(--text);
-  background: rgba(255, 255, 255, 0.045);
+  background: transparent;
   border: 1px solid var(--border-strong);
   border-radius: 999px;
   text-decoration: none;
@@ -214,7 +220,7 @@
     grid-template-columns: 1fr;
   }
 
-  .panel {
+  .side {
     position: static;
   }
 }
