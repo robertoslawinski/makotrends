@@ -2,18 +2,33 @@ import { PlusCircle, Target, Trophy } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../api/client";
+import StateMessage from "../components/StateMessage";
 import { useAuth } from "../context/AuthContext";
 import styles from "./Dashboard.module.css";
 
 export default function Dashboard() {
   const { user } = useAuth();
   const [profile, setProfile] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-  useEffect(() => {
-    const load = async () => {
+  const load = async () => {
+    setLoading(true);
+    setError("");
+    try {
       const { data } = await api.get("/api/users/me");
       setProfile(data);
-    };
+    } catch (err) {
+      setError(
+        err.response?.data?.message ||
+          "Your dashboard could not be loaded right now."
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
     load();
   }, []);
 
@@ -30,6 +45,16 @@ export default function Dashboard() {
           </Link>
         )}
       </div>
+      {loading && (
+        <StateMessage type="loading" title="Loading your dashboard">
+          Refreshing your score, accuracy and resolved vote totals.
+        </StateMessage>
+      )}
+      {!loading && error && (
+        <StateMessage type="error" title="Dashboard unavailable" actionLabel="Try again" onAction={load}>
+          {error}
+        </StateMessage>
+      )}
       <div className={styles.stats}>
         <article>
           <Trophy size={22} />

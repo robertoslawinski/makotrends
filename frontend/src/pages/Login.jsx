@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import StateMessage from "../components/StateMessage";
 import { useAuth } from "../context/AuthContext";
 import styles from "./Auth.module.css";
 
@@ -8,16 +9,20 @@ export default function Login() {
   const navigate = useNavigate();
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const submit = async (event) => {
     event.preventDefault();
     setError("");
+    setLoading(true);
 
     try {
       await login(form.email, form.password);
       navigate("/dashboard");
     } catch (err) {
-      setError(err.response?.data?.message || "Login failed");
+      setError(err.response?.data?.message || "Login failed. Please check your email and password.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -44,8 +49,14 @@ export default function Login() {
             onChange={(event) => setForm({ ...form, password: event.target.value })}
           />
         </label>
-        {error && <p className="error">{error}</p>}
-        <button type="submit">Login</button>
+        {error && (
+          <StateMessage type="error" title="Could not sign you in" compact>
+            {error}
+          </StateMessage>
+        )}
+        <button type="submit" disabled={loading}>
+          {loading ? "Signing in..." : "Login"}
+        </button>
         <p>
           New here? <Link to="/signup">Create an account</Link>
         </p>

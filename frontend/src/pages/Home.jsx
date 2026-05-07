@@ -2,6 +2,7 @@ import { Filter } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import api from "../api/client";
 import PredictionCard from "../components/PredictionCard";
+import StateMessage from "../components/StateMessage";
 import styles from "./Home.module.css";
 
 const statuses = ["all", "open", "closed", "resolved"];
@@ -12,22 +13,25 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+  const loadPredictions = async () => {
+    setLoading(true);
+    setError("");
+
+    try {
+      const query = status === "all" ? "" : `?status=${status}`;
+      const { data } = await api.get(`/api/predictions${query}`);
+      setPredictions(data);
+    } catch (err) {
+      setError(
+        err.response?.data?.message ||
+          "We could not reach the market feed. Please check your connection and try again."
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const loadPredictions = async () => {
-      setLoading(true);
-      setError("");
-
-      try {
-        const query = status === "all" ? "" : `?status=${status}`;
-        const { data } = await api.get(`/api/predictions${query}`);
-        setPredictions(data);
-      } catch (err) {
-        setError(err.response?.data?.message || "Unable to load predictions");
-      } finally {
-        setLoading(false);
-      }
-    };
-
     loadPredictions();
   }, [status]);
 
@@ -72,9 +76,26 @@ export default function Home() {
         ))}
       </div>
 
-      {loading && <p>Loading predictions...</p>}
-      {error && <p className="error">{error}</p>}
-      {!loading && predictions.length === 0 && <p>No predictions found.</p>}
+      {loading && (
+        <StateMessage type="loading" title="Loading live markets">
+          Fetching the latest prediction signals and vote distribution.
+        </StateMessage>
+      )}
+      {!loading && error && (
+        <StateMessage
+          type="error"
+          title="Markets are temporarily unavailable"
+          actionLabel="Try again"
+          onAction={loadPredictions}
+        >
+          {error}
+        </StateMessage>
+      )}
+      {!loading && !error && predictions.length === 0 && (
+        <StateMessage type="empty" title="No markets match this filter">
+          Try another status filter or come back when new signals are published.
+        </StateMessage>
+      )}
       <div className={styles.grid}>
         {predictions.map((prediction) => (
           <PredictionCard key={prediction._id} prediction={prediction} />

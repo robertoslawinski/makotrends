@@ -2,6 +2,7 @@ import { Save } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "../api/client";
+import StateMessage from "../components/StateMessage";
 import styles from "./CreatePrediction.module.css";
 
 const initialForm = {
@@ -27,22 +28,35 @@ export default function CreatePrediction({ editMode = false }) {
   const navigate = useNavigate();
   const [form, setForm] = useState(initialForm);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(editMode);
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     const load = async () => {
       if (!editMode) return;
-      const { data } = await api.get(`/api/predictions/${id}`);
-      setForm({
-        title: data.title,
-        description: data.description,
-        category: data.category,
-        deadline: toDatetimeLocal(data.deadline),
-        resolutionDate: data.resolutionDate ? toDatetimeLocal(data.resolutionDate) : "",
-        resolutionSource: data.resolutionSource || "",
-        resolutionCriteria: data.resolutionCriteria || "",
-        pointsValue: data.pointsValue || 10,
-        status: data.status
-      });
+      setLoading(true);
+      setError("");
+      try {
+        const { data } = await api.get(`/api/predictions/${id}`);
+        setForm({
+          title: data.title,
+          description: data.description,
+          category: data.category,
+          deadline: toDatetimeLocal(data.deadline),
+          resolutionDate: data.resolutionDate ? toDatetimeLocal(data.resolutionDate) : "",
+          resolutionSource: data.resolutionSource || "",
+          resolutionCriteria: data.resolutionCriteria || "",
+          pointsValue: data.pointsValue || 10,
+          status: data.status
+        });
+      } catch (err) {
+        setError(
+          err.response?.data?.message ||
+            "This market could not be loaded for editing."
+        );
+      } finally {
+        setLoading(false);
+      }
     };
     load();
   }, [editMode, id]);
@@ -50,6 +64,7 @@ export default function CreatePrediction({ editMode = false }) {
   const submit = async (event) => {
     event.preventDefault();
     setError("");
+    setSaving(true);
 
     try {
       const payload = {
@@ -69,7 +84,12 @@ export default function CreatePrediction({ editMode = false }) {
 
       navigate("/admin");
     } catch (err) {
-      setError(err.response?.data?.message || "Unable to save prediction");
+      setError(
+        err.response?.data?.message ||
+          "Unable to save this market. Please review the fields and try again."
+      );
+    } finally {
+      setSaving(false);
     }
   };
 
@@ -77,6 +97,11 @@ export default function CreatePrediction({ editMode = false }) {
     <section className={styles.page}>
       <form className={styles.form} onSubmit={submit}>
         <h1>{editMode ? "Edit prediction" : "Create prediction"}</h1>
+        {loading && (
+          <StateMessage type="loading" title="Loading market draft" compact>
+            Fetching the saved market data.
+          </StateMessage>
+        )}
         <label>
           Title
           <input
@@ -170,9 +195,13 @@ export default function CreatePrediction({ editMode = false }) {
             </select>
           </label>
         )}
-        {error && <p className="error">{error}</p>}
-        <button type="submit">
-          <Save size={18} /> Save
+        {error && (
+          <StateMessage type="error" title="Market could not be saved" compact>
+            {error}
+          </StateMessage>
+        )}
+        <button type="submit" disabled={loading || saving}>
+          <Save size={18} /> {saving ? "Saving..." : "Save"}
         </button>
       </form>
     </section>

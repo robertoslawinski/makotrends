@@ -2,6 +2,7 @@ import { CheckCircle2, FileCheck2, Link as LinkIcon, XCircle } from "lucide-reac
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "../api/client";
+import StateMessage from "../components/StateMessage";
 import VoteProgress from "../components/VoteProgress";
 import { useAuth } from "../context/AuthContext";
 import styles from "./PredictionDetails.module.css";
@@ -17,11 +18,15 @@ export default function PredictionDetails() {
 
   const loadPrediction = async () => {
     setLoading(true);
+    setError("");
     try {
       const { data } = await api.get(`/api/predictions/${id}`);
       setPrediction(data);
     } catch (err) {
-      setError(err.response?.data?.message || "Unable to load prediction");
+      setError(
+        err.response?.data?.message ||
+          "We could not load this market. It may have moved, or the API may be waking up."
+      );
     } finally {
       setLoading(false);
     }
@@ -48,8 +53,30 @@ export default function PredictionDetails() {
     }
   };
 
-  if (loading) return <p>Loading prediction...</p>;
-  if (!prediction) return <p className="error">{error}</p>;
+  if (loading) {
+    return (
+      <section className={styles.page}>
+        <StateMessage type="loading" title="Loading market details">
+          Preparing the latest vote totals, rules and resolution criteria.
+        </StateMessage>
+      </section>
+    );
+  }
+
+  if (!prediction) {
+    return (
+      <section className={styles.page}>
+        <StateMessage
+          type="error"
+          title="Market could not be loaded"
+          actionLabel="Try again"
+          onAction={loadPrediction}
+        >
+          {error}
+        </StateMessage>
+      </section>
+    );
+  }
 
   const alreadyVoted = Boolean(prediction.viewerVote);
   const votingOpen = prediction.status === "open" && new Date(prediction.deadline) > new Date();
@@ -126,8 +153,16 @@ export default function PredictionDetails() {
             <dd>{prediction.pointsValue || 10} pts</dd>
           </div>
         </dl>
-        {message && <p className="success">{message}</p>}
-        {error && <p className="error">{error}</p>}
+        {message && (
+          <StateMessage type="success" title="Vote confirmed" compact>
+            {message}
+          </StateMessage>
+        )}
+        {error && (
+          <StateMessage type="error" title="Action could not be completed" compact>
+            {error}
+          </StateMessage>
+        )}
       </aside>
     </section>
   );

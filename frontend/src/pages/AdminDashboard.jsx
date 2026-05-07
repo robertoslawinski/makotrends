@@ -2,16 +2,29 @@ import { Edit, PlusCircle, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../api/client";
+import StateMessage from "../components/StateMessage";
 import styles from "./AdminDashboard.module.css";
 
 export default function AdminDashboard() {
   const [predictions, setPredictions] = useState([]);
   const [resultById, setResultById] = useState({});
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const load = async () => {
-    const { data } = await api.get("/api/predictions");
-    setPredictions(data);
+    setLoading(true);
+    setError("");
+    try {
+      const { data } = await api.get("/api/predictions");
+      setPredictions(data);
+    } catch (err) {
+      setError(
+        err.response?.data?.message ||
+          "Admin markets could not be loaded right now."
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -19,8 +32,13 @@ export default function AdminDashboard() {
   }, []);
 
   const remove = async (id) => {
-    await api.delete(`/api/predictions/${id}`);
-    await load();
+    setError("");
+    try {
+      await api.delete(`/api/predictions/${id}`);
+      await load();
+    } catch (err) {
+      setError(err.response?.data?.message || "Unable to delete this market.");
+    }
   };
 
   const resolve = async (id) => {
@@ -31,7 +49,7 @@ export default function AdminDashboard() {
       });
       await load();
     } catch (err) {
-      setError(err.response?.data?.message || "Unable to resolve prediction");
+      setError(err.response?.data?.message || "Unable to resolve this market.");
     }
   };
 
@@ -43,7 +61,21 @@ export default function AdminDashboard() {
           <PlusCircle size={18} /> Create prediction
         </Link>
       </div>
-      {error && <p className="error">{error}</p>}
+      {loading && (
+        <StateMessage type="loading" title="Loading admin markets">
+          Preparing markets for editing and resolution.
+        </StateMessage>
+      )}
+      {!loading && error && (
+        <StateMessage type="error" title="Admin action needs attention" actionLabel="Try again" onAction={load}>
+          {error}
+        </StateMessage>
+      )}
+      {!loading && !error && predictions.length === 0 && (
+        <StateMessage type="empty" title="No markets created yet">
+          Create the first prediction market to launch the board.
+        </StateMessage>
+      )}
       <div className={styles.list}>
         {predictions.map((prediction) => (
           <article key={prediction._id}>

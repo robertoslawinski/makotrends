@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import StateMessage from "../components/StateMessage";
 import { useAuth } from "../context/AuthContext";
 import styles from "./Auth.module.css";
 
@@ -8,16 +9,23 @@ export default function Signup() {
   const navigate = useNavigate();
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const submit = async (event) => {
     event.preventDefault();
     setError("");
+    setLoading(true);
 
     try {
       await signup(form.name, form.email, form.password);
       navigate("/dashboard");
     } catch (err) {
-      setError(err.response?.data?.message || "Signup failed");
+      setError(
+        err.response?.data?.message ||
+          "Signup failed. Please check the fields and try again."
+      );
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -53,8 +61,14 @@ export default function Signup() {
             onChange={(event) => setForm({ ...form, password: event.target.value })}
           />
         </label>
-        {error && <p className="error">{error}</p>}
-        <button type="submit">Sign up</button>
+        {error && (
+          <StateMessage type="error" title="Could not create account" compact>
+            {error}
+          </StateMessage>
+        )}
+        <button type="submit" disabled={loading}>
+          {loading ? "Creating account..." : "Sign up"}
+        </button>
         <p>
           Already have an account? <Link to="/login">Login</Link>
         </p>
