@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import StateMessage from "../components/StateMessage";
 import { useAuth } from "../context/AuthContext";
+import { trackEvent } from "../utils/analytics";
 import styles from "./Auth.module.css";
 
 export default function Login() {
@@ -18,6 +19,9 @@ export default function Login() {
 
     try {
       await login(form.email, form.password);
+      trackEvent("login_completed", {
+        method: "email"
+      });
       navigate("/dashboard");
     } catch (err) {
       setError(err.response?.data?.message || "Login failed. Please check your email and password.");
