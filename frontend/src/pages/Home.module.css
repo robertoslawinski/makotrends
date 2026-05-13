@@ -4,12 +4,39 @@
 }
 
 .hero {
+  position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 180px;
-  gap: clamp(28px, 7vw, 96px);
-  align-items: end;
-  min-height: 500px;
-  padding: clamp(64px, 10vw, 132px) 0 clamp(28px, 5vw, 54px);
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+  gap: clamp(32px, 7vw, 86px);
+  align-items: center;
+  min-height: 570px;
+  padding: clamp(58px, 9vw, 108px) clamp(24px, 5vw, 64px);
+  overflow: hidden;
+  color: #fffdf7;
+  background:
+    radial-gradient(circle at 86% 18%, rgba(0, 127, 120, 0.28), transparent 340px),
+    radial-gradient(circle at 14% 86%, rgba(167, 143, 66, 0.14), transparent 300px),
+    linear-gradient(135deg, #07111f 0%, #101820 64%, #14211e 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 32px;
+  box-shadow: 0 34px 90px rgba(16, 24, 32, 0.16);
+}
+
+.hero::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 62px 62px;
+  mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+}
+
+.hero > * {
+  position: relative;
+  z-index: 1;
 }
 
 .heroCopy {
@@ -18,7 +45,7 @@
 
 .eyebrow {
   display: inline-flex;
-  color: var(--teal);
+  color: var(--gold);
   font-size: 12px;
   font-weight: 850;
   letter-spacing: 0.16em;
@@ -26,20 +53,20 @@
 }
 
 .hero h1 {
-  max-width: 900px;
+  max-width: 880px;
   margin: 18px 0 0;
-  color: var(--text);
-  font-size: clamp(58px, 9vw, 118px);
-  line-height: 0.94;
+  color: #fffdf7;
+  font-size: clamp(54px, 8vw, 104px);
+  line-height: 0.96;
   letter-spacing: 0;
 }
 
 .hero p {
-  max-width: 690px;
+  max-width: 640px;
   margin: 26px 0 0;
-  color: var(--muted);
-  font-size: clamp(18px, 2vw, 22px);
-  line-height: 1.62;
+  color: rgba(255, 253, 247, 0.72);
+  font-size: clamp(18px, 2vw, 23px);
+  line-height: 1.55;
 }
 
 .heroActions {
@@ -68,14 +95,14 @@
 }
 
 .heroActions a:first-child {
-  color: #fffdf7;
-  background: var(--ink);
+  color: #07111f;
+  background: #18c7c1;
 }
 
 .heroActions a:last-child {
-  color: var(--text);
-  border: 1px solid var(--border);
-  background: rgba(255, 253, 247, 0.7);
+  color: #fffdf7;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .heroActions a:hover {
@@ -83,31 +110,99 @@
 }
 
 .heroActions a:first-child:hover {
-  background: var(--teal);
+  background: #5fe3de;
 }
 
 .heroActions a:last-child:hover {
-  border-color: var(--border-strong);
-  background: rgba(255, 253, 247, 0.96);
+  border-color: rgba(255, 255, 255, 0.24);
+  background: rgba(255, 255, 255, 0.1);
 }
 
-.heroMeta {
+.trendBoard {
   display: grid;
-  gap: 8px;
-  padding: 22px 0 22px 24px;
-  border-left: 1px solid var(--border);
+  gap: 14px;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.065);
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 24px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(18px);
 }
 
-.heroMeta strong {
-  color: var(--text);
-  font-size: 52px;
-  line-height: 1;
+.boardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: rgba(255, 253, 247, 0.68);
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-.heroMeta span {
-  color: var(--muted);
-  font-size: 14px;
+.boardHeader strong {
+  color: var(--gold);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.liveDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #18c7c1;
+  box-shadow: 0 0 0 8px rgba(24, 199, 193, 0.12);
+  animation: pulse 1.8s ease-in-out infinite;
+}
+
+.signalList {
+  display: grid;
+  gap: 10px;
+}
+
+.signalCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 58px;
+  padding: 0 16px;
+  color: rgba(255, 253, 247, 0.84);
+  background: rgba(7, 17, 31, 0.48);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  animation: floatIn 520ms ease both;
+}
+
+.signalCard:nth-child(2) {
+  animation-delay: 90ms;
+}
+
+.signalCard:nth-child(3) {
+  animation-delay: 180ms;
+}
+
+.signalCard:nth-child(4) {
+  animation-delay: 270ms;
+}
+
+.signalCard span {
+  font-size: 15px;
   font-weight: 780;
+}
+
+.signalCard strong {
+  font-size: 16px;
+  font-weight: 880;
+}
+
+.up {
+  color: #18c7c1;
+}
+
+.down {
+  color: #d9a86c;
 }
 
 .proofLine {
@@ -196,14 +291,8 @@
   .hero {
     grid-template-columns: 1fr;
     min-height: auto;
-    padding: 46px 0 18px;
-  }
-
-  .heroMeta {
-    width: min(100%, 220px);
-    border-top: 1px solid var(--border);
-    border-left: 0;
-    padding: 20px 0 0;
+    padding: 38px 22px 22px;
+    border-radius: 24px;
   }
 }
 
@@ -213,7 +302,7 @@
   }
 
   .hero {
-    padding-top: 34px;
+    padding: 30px 18px 18px;
   }
 
   .eyebrow {
@@ -223,7 +312,7 @@
 
   .hero h1 {
     margin-top: 14px;
-    font-size: clamp(45px, 15vw, 66px);
+    font-size: clamp(40px, 13vw, 62px);
     line-height: 0.98;
   }
 
@@ -241,6 +330,22 @@
 
   .heroActions a {
     width: 100%;
+  }
+
+  .trendBoard {
+    padding: 14px;
+    border-radius: 18px;
+  }
+
+  .boardHeader {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .signalCard {
+    min-height: 52px;
+    padding: 0 12px;
   }
 
   .proofLine span {
@@ -263,5 +368,30 @@
 
   .grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.82;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.18);
+  }
+}
+
+@keyframes floatIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

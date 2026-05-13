@@ -19,6 +19,13 @@ const proofPoints = [
   "Trend intelligence from markets"
 ];
 
+const trendSignals = [
+  { name: "AI Agents", change: "+34%", direction: "up" },
+  { name: "Humanoid Robots", change: "+21%", direction: "up" },
+  { name: "Traditional Search", change: "-18%", direction: "down" },
+  { name: "AI Coding Startups", change: "+27%", direction: "up" }
+];
+
 export default function Home() {
   const [predictions, setPredictions] = useState([]);
   const [status, setStatus] = useState("all");
@@ -57,23 +64,36 @@ export default function Home() {
       <header className={styles.hero}>
         <div className={styles.heroCopy}>
           <span className={styles.eyebrow}>Prediction intelligence</span>
-          <h1>Anticipate what moves next.</h1>
+          <h1>Discover emerging trends before they go mainstream.</h1>
           <p>
-            MakoTrends turns future-facing markets into a clean, points-based
-            game for reading technology, culture and consumer shifts early.
+            AI, culture, technology and market shifts transformed into live,
+            points-based forecasts.
           </p>
           <div className={styles.heroActions}>
             <a href="#markets">
-              Explore markets <ArrowUpRight size={18} />
+              Explore Trends <ArrowUpRight size={18} />
             </a>
-            <a href="/about">About MakoTrends</a>
+            <a href="#markets">View Live Markets</a>
           </div>
         </div>
 
-        <div className={styles.heroMeta} aria-label="Market summary">
-          <strong>{openCount}</strong>
-          <span>open markets</span>
-        </div>
+        <aside className={styles.trendBoard} aria-label="Trending signals">
+          <div className={styles.boardHeader}>
+            <span className={styles.liveDot} />
+            <span>Trending now</span>
+            <strong>{openCount} live markets</strong>
+          </div>
+          <div className={styles.signalList}>
+            {trendSignals.map((signal) => (
+              <div className={styles.signalCard} key={signal.name}>
+                <span>{signal.name}</span>
+                <strong className={styles[signal.direction]}>
+                  {signal.direction === "up" ? "↑" : "↓"} {signal.change}
+                </strong>
+              </div>
+            ))}
+          </div>
+        </aside>
       </header>
 
       <div className={styles.proofLine}>
