@@ -1,19 +1,19 @@
 .page {
   display: grid;
-  gap: clamp(52px, 8vw, 96px);
+  gap: clamp(34px, 6vw, 64px);
 }
 
-.header {
+.hero {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(300px, 380px);
-  gap: clamp(44px, 8vw, 120px);
+  grid-template-columns: minmax(0, 1fr) 180px;
+  gap: clamp(28px, 7vw, 96px);
   align-items: end;
-  min-height: 620px;
-  padding: clamp(72px, 11vw, 150px) 0 clamp(42px, 7vw, 84px);
+  min-height: 500px;
+  padding: clamp(64px, 10vw, 132px) 0 clamp(28px, 5vw, 54px);
 }
 
 .heroCopy {
-  max-width: 980px;
+  max-width: 920px;
 }
 
 .eyebrow {
@@ -25,28 +25,28 @@
   text-transform: uppercase;
 }
 
-.header h1 {
-  max-width: 960px;
+.hero h1 {
+  max-width: 900px;
   margin: 18px 0 0;
   color: var(--text);
-  font-size: clamp(58px, 9vw, 126px);
+  font-size: clamp(58px, 9vw, 118px);
   line-height: 0.94;
   letter-spacing: 0;
 }
 
-.header p {
-  max-width: 760px;
-  margin: 28px 0 0;
+.hero p {
+  max-width: 690px;
+  margin: 26px 0 0;
   color: var(--muted);
-  font-size: clamp(18px, 2vw, 23px);
-  line-height: 1.65;
+  font-size: clamp(18px, 2vw, 22px);
+  line-height: 1.62;
 }
 
 .heroActions {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 36px;
+  margin-top: 34px;
 }
 
 .heroActions a {
@@ -75,7 +75,7 @@
 .heroActions a:last-child {
   color: var(--text);
   border: 1px solid var(--border);
-  background: rgba(255, 253, 247, 0.62);
+  background: rgba(255, 253, 247, 0.7);
 }
 
 .heroActions a:hover {
@@ -91,227 +91,60 @@
   background: rgba(255, 253, 247, 0.96);
 }
 
-.signalPanel {
+.heroMeta {
   display: grid;
-  gap: 22px;
-  padding: 28px;
-  color: #fffdf7;
-  background:
-    linear-gradient(145deg, rgba(0, 127, 120, 0.18), transparent 42%),
-    var(--ink);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 24px;
-  box-shadow: 0 30px 80px rgba(16, 24, 32, 0.16);
+  gap: 8px;
+  padding: 22px 0 22px 24px;
+  border-left: 1px solid var(--border);
 }
 
-.panelHeader {
+.heroMeta strong {
+  color: var(--text);
+  font-size: 52px;
+  line-height: 1;
+}
+
+.heroMeta span {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 780;
+}
+
+.proofLine {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  color: var(--gold);
-  font-size: 12px;
-  font-weight: 850;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  flex-wrap: wrap;
+  gap: 1px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--border);
 }
 
-.signalPanel strong {
-  max-width: 310px;
-  font-size: clamp(24px, 3vw, 34px);
-  line-height: 1.08;
-}
-
-.signalPanel p {
-  margin: 0;
-  color: rgba(255, 253, 247, 0.72);
+.proofLine span {
+  flex: 1 1 220px;
+  padding: 18px 20px;
+  color: var(--text);
+  background: rgba(255, 253, 247, 0.76);
   font-size: 15px;
-  line-height: 1.6;
-}
-
-.panelStats {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1px;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.panelStats span {
-  display: grid;
-  gap: 4px;
-  padding: 14px;
-  color: rgba(255, 253, 247, 0.66);
-  background: rgba(7, 17, 31, 0.52);
-  font-size: 12px;
-  font-weight: 720;
-}
-
-.panelStats b {
-  color: #fffdf7;
-  font-size: 26px;
-  line-height: 1;
-}
-
-.intelligence {
-  display: grid;
-  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
-  gap: clamp(34px, 7vw, 92px);
-  align-items: start;
-  padding: clamp(44px, 7vw, 86px) 0;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-
-.intelligence h2,
-.marketIntro h2 {
-  max-width: 720px;
-  margin: 14px 0 0;
-  color: var(--text);
-  font-size: clamp(42px, 6vw, 76px);
-  line-height: 0.98;
-  letter-spacing: 0;
-}
-
-.intelligence > div > p {
-  max-width: 540px;
-  margin: 24px 0 0;
-  color: var(--muted);
-  font-size: 18px;
-  line-height: 1.65;
-}
-
-.pillars {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  background: var(--border);
-}
-
-.pillars article {
-  display: grid;
-  align-content: start;
-  gap: 12px;
-  min-height: 185px;
-  padding: 26px;
-  background: rgba(255, 253, 247, 0.72);
-}
-
-.pillars article span {
-  color: var(--gold);
-  font-size: 13px;
-  font-weight: 850;
-}
-
-.pillars h3 {
-  margin: 0;
-  color: var(--text);
-  font-size: 21px;
-  line-height: 1.15;
-}
-
-.pillars article p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 16px;
-  line-height: 1.5;
-}
-
-.method {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  background: var(--border);
-}
-
-.method article {
-  display: grid;
-  align-content: space-between;
-  gap: 28px;
-  min-height: 300px;
-  padding: 30px;
-  color: #fffdf7;
-  background: var(--ink);
-}
-
-.method article:nth-child(2) {
-  background: #17322f;
-}
-
-.method article:nth-child(3) {
-  color: var(--text);
-  background: #efe7d5;
-}
-
-.method svg {
-  color: var(--gold);
-}
-
-.method h2 {
-  max-width: 420px;
-  margin: 0;
-  font-size: clamp(30px, 4vw, 48px);
-  line-height: 1;
-}
-
-.method p {
-  max-width: 520px;
-  margin: 0;
-  color: rgba(255, 253, 247, 0.72);
-  font-size: 16px;
-  line-height: 1.6;
-}
-
-.method article:nth-child(3) p {
-  color: var(--muted);
+  font-weight: 760;
 }
 
 .marketSection {
   display: grid;
-  gap: 24px;
+  gap: 22px;
 }
 
 .marketIntro {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 32px;
+  display: grid;
+  gap: 12px;
 }
 
 .marketIntro h2 {
-  font-size: clamp(38px, 6vw, 74px);
-}
-
-.proofPoints {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 1px;
-  overflow: hidden;
-  min-width: min(100%, 460px);
-  border: 1px solid var(--border);
-  background: var(--border);
-}
-
-.proofPoints span {
-  display: grid;
-  gap: 5px;
-  min-width: 142px;
-  padding: 15px 18px;
-  color: var(--muted);
-  background: rgba(255, 253, 247, 0.78);
-  font-size: 12px;
-  font-weight: 760;
-}
-
-.proofPoints b {
+  max-width: 720px;
+  margin: 0;
   color: var(--text);
-  font-size: 18px;
+  font-size: clamp(38px, 6vw, 72px);
+  line-height: 0.98;
+  letter-spacing: 0;
 }
 
 .filters {
@@ -332,7 +165,6 @@
   border-radius: 999px;
   box-shadow: none;
   font-weight: 780;
-  text-transform: none;
   transition:
     background 160ms ease,
     border-color 160ms ease,
@@ -360,50 +192,28 @@
   background: var(--border);
 }
 
-@media (max-width: 900px) {
-  .header,
-  .intelligence {
+@media (max-width: 780px) {
+  .hero {
     grid-template-columns: 1fr;
-  }
-
-  .header {
     min-height: auto;
+    padding: 46px 0 18px;
   }
 
-  .signalPanel {
-    max-width: 520px;
-  }
-
-  .method {
-    grid-template-columns: 1fr;
-  }
-
-  .method article {
-    min-height: 230px;
-  }
-
-  .marketIntro {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .proofPoints {
-    justify-content: stretch;
-    width: 100%;
-  }
-
-  .proofPoints span {
-    flex: 1 1 140px;
+  .heroMeta {
+    width: min(100%, 220px);
+    border-top: 1px solid var(--border);
+    border-left: 0;
+    padding: 20px 0 0;
   }
 }
 
-@media (max-width: 620px) {
+@media (max-width: 560px) {
   .page {
-    gap: 42px;
+    gap: 30px;
   }
 
-  .header {
-    padding: 44px 0 22px;
+  .hero {
+    padding-top: 34px;
   }
 
   .eyebrow {
@@ -411,42 +221,34 @@
     letter-spacing: 0.12em;
   }
 
-  .header h1 {
+  .hero h1 {
     margin-top: 14px;
-    font-size: clamp(46px, 15vw, 68px);
+    font-size: clamp(45px, 15vw, 66px);
     line-height: 0.98;
   }
 
-  .header p,
-  .intelligence > div > p {
+  .hero p {
+    margin-top: 20px;
     font-size: 16px;
-    line-height: 1.6;
+    line-height: 1.58;
   }
 
   .heroActions {
     display: grid;
     gap: 10px;
-    margin-top: 28px;
+    margin-top: 26px;
   }
 
   .heroActions a {
     width: 100%;
   }
 
-  .signalPanel,
-  .pillars article,
-  .method article {
-    padding: 22px;
+  .proofLine span {
+    padding: 15px 16px;
   }
 
-  .panelStats,
-  .pillars {
-    grid-template-columns: 1fr;
-  }
-
-  .intelligence h2,
   .marketIntro h2 {
-    font-size: clamp(36px, 12vw, 54px);
+    font-size: clamp(34px, 12vw, 52px);
   }
 
   .filters {
