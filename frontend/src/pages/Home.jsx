@@ -7,43 +7,43 @@ import styles from "./Home.module.css";
 
 const statuses = ["all", "open", "closed", "resolved"];
 const statusLabels = {
-  all: "Todos",
-  open: "Abertos",
-  closed: "Fechados",
-  resolved: "Resolvidos"
+  all: "All",
+  open: "Open",
+  closed: "Closed",
+  resolved: "Resolved"
 };
 
 const intelligencePillars = [
   {
-    title: "Comportamento",
-    text: "Identifique como consumidores vão pensar, sentir e se comportar."
+    title: "Behavior",
+    text: "Identify how consumers may think, feel and behave next."
   },
   {
     title: "Timing",
-    text: "Desenvolva os produtos certos no momento exato."
+    text: "Build the right products at the right moment."
   },
   {
-    title: "Confiança",
-    text: "Inove com sinais coletivos em vez de ruído."
+    title: "Confidence",
+    text: "Innovate with collective signals instead of noise."
   },
   {
-    title: "Oportunidade",
-    text: "Encontre movimentos antes da concorrência."
+    title: "Opportunity",
+    text: "Spot emerging openings before competitors react."
   },
   {
-    title: "Crescimento",
-    text: "Impulsione vendas e fidelize no longo prazo."
+    title: "Growth",
+    text: "Turn trend signals into stronger sales and long-term loyalty."
   },
   {
-    title: "Clareza",
-    text: "Transforme mercados de previsão em inteligência acionável."
+    title: "Clarity",
+    text: "Transform prediction markets into actionable intelligence."
   }
 ];
 
 const proofPoints = [
-  { label: "Sem apostas", value: "Pontos" },
-  { label: "Formato", value: "Sim / Não" },
-  { label: "Fonte", value: "Markets" }
+  { label: "No betting", value: "Points" },
+  { label: "Format", value: "Yes / No" },
+  { label: "Source", value: "Markets" }
 ];
 
 export default function Home() {
@@ -89,17 +89,17 @@ export default function Home() {
       <div className={styles.header}>
         <div className={styles.heroCopy}>
           <span className={styles.eyebrow}>Prediction intelligence</span>
-          <h1>Antecipe o futuro com clareza e confiança.</h1>
+          <h1>Anticipate the future with clarity and confidence.</h1>
           <p>
-            MakoTrends é um jogo de previsão baseado em pontos que transforma
-            mercados de sim ou não em sinais sobre tecnologia, cultura, consumo
-            e comportamento.
+            MakoTrends is a points-based prediction game that turns yes-or-no
+            markets into signals about technology, culture, consumer behavior
+            and the next wave of demand.
           </p>
           <div className={styles.heroActions}>
             <a href="#markets">
-              Explorar sinais <ArrowUpRight size={18} />
+              Explore signals <ArrowUpRight size={18} />
             </a>
-            <a href="/rules">Ver regras</a>
+            <a href="/rules">View rules</a>
           </div>
         </div>
 
@@ -108,20 +108,20 @@ export default function Home() {
             <span>Signal brief</span>
             <Sparkles size={17} />
           </div>
-          <strong>O que a comunidade espera antes da tendência virar consenso?</strong>
-          <p>Observe votos, percentuais e resoluções para transformar curiosidade em leitura estratégica.</p>
+          <strong>What does the crowd expect before a trend becomes consensus?</strong>
+          <p>Track votes, percentages and resolutions to turn curiosity into strategic foresight.</p>
           <div className={styles.panelStats}>
             <span>
               <b>{openCount}</b>
-              abertos
+              open
             </span>
             <span>
               <b>{predictions.length}</b>
-              monitorados
+              monitored
             </span>
             <span>
               <b>{categoryCount}</b>
-              temas
+              topics
             </span>
           </div>
         </aside>
@@ -130,10 +130,10 @@ export default function Home() {
       <section className={styles.intelligence}>
         <div>
           <span className={styles.eyebrow}>Why it matters</span>
-          <h2>Dados de previsão para decisões mais inteligentes.</h2>
+          <h2>Prediction data for smarter decisions.</h2>
           <p>
-            Cada market é uma pergunta objetiva. Cada voto é um pequeno sinal.
-            Juntos, eles ajudam a revelar para onde o mercado pode estar indo.
+            Each market is a focused question. Each vote is a small signal.
+            Together, they help reveal where the market may be moving next.
           </p>
         </div>
         <div className={styles.pillars}>
@@ -150,26 +150,26 @@ export default function Home() {
       <section className={styles.method}>
         <article>
           <Target size={22} />
-          <h2>Sem apostas. Só precisão.</h2>
+          <h2>No betting. Just accuracy.</h2>
           <p>
-            Usuários votam em perguntas objetivas de sim/não e ganham pontos
-            quando os mercados são resolvidos corretamente.
+            Users vote on objective yes-or-no questions and earn points when
+            markets resolve correctly.
           </p>
         </article>
         <article>
           <BarChart3 size={22} />
-          <h2>Sinais coletivos em tempo real.</h2>
+          <h2>Collective signals in real time.</h2>
           <p>
-            Cada voto ajuda a revelar como a comunidade enxerga tendências
-            antes de elas ficarem óbvias.
+            Each vote helps reveal how the community reads trends before they
+            become obvious.
           </p>
         </article>
         <article>
           <Users size={22} />
-          <h2>Uma leitura viva do mercado.</h2>
+          <h2>A living read on the market.</h2>
           <p>
-            Acompanhe como diferentes públicos interpretam eventos, lançamentos,
-            riscos e movimentos culturais.
+            See how people interpret events, launches, risks and cultural shifts
+            as they unfold.
           </p>
         </article>
       </section>
