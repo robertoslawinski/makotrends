@@ -2,14 +2,12 @@
   display: grid;
   gap: 16px;
   align-content: start;
-  min-height: 330px;
-  padding: 22px;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.025), transparent),
-    var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.18);
+  min-height: 374px;
+  padding: 28px;
+  background: var(--surface);
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
   transition:
     background 160ms ease,
     border-color 160ms ease,
@@ -17,24 +15,21 @@
 }
 
 .card:hover {
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent),
-    #152033;
-  border-color: var(--border-strong);
+  background: #fbf6eb;
   transform: translateY(-2px);
 }
 
 .card h2 {
   margin: 0;
   color: var(--text);
-  font-size: 21px;
-  line-height: 1.24;
+  font-size: 25px;
+  line-height: 1.12;
 }
 
 .card p {
   margin: 0;
   color: var(--muted);
-  line-height: 1.55;
+  line-height: 1.58;
 }
 
 .meta,
@@ -72,7 +67,7 @@
 }
 
 .resolved {
-  color: #b8bdd6 !important;
+  color: #6f5d2c !important;
 }
 
 .footer a {
@@ -80,8 +75,8 @@
   align-items: center;
   min-height: 36px;
   padding: 0 12px;
-  color: var(--text);
-  background: rgba(255, 255, 255, 0.035);
+  color: #fffdf7;
+  background: var(--ink);
   border: 1px solid var(--border);
   border-radius: 999px;
   font-size: 14px;
@@ -93,8 +88,8 @@
 }
 
 .footer a:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: var(--border-strong);
+  background: var(--teal);
+  border-color: var(--teal);
 }
 
 @media (max-width: 520px) {

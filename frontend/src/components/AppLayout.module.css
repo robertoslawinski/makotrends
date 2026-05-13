@@ -5,19 +5,19 @@
 
 .header {
   position: sticky;
-  top: 14px;
+  top: 12px;
   z-index: 10;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 24px;
+  gap: 28px;
   width: min(1240px, calc(100% - 32px));
   margin: 0 auto;
-  padding: 10px 12px;
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 16px;
-  background: rgba(7, 17, 31, 0.66);
-  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.22);
+  padding: 9px 12px;
+  border: 1px solid rgba(16, 24, 32, 0.09);
+  border-radius: 999px;
+  background: rgba(255, 253, 247, 0.82);
+  box-shadow: 0 18px 50px rgba(16, 24, 32, 0.07);
   backdrop-filter: blur(18px);
 }
 
@@ -31,13 +31,13 @@
 .brand {
   display: flex;
   align-items: center;
-  gap: 12px;
-  min-width: 226px;
+  gap: 10px;
+  min-width: 214px;
 }
 
 .brand img {
   display: block;
-  width: 92px;
+  width: 78px;
   height: auto;
   object-fit: contain;
 }
@@ -71,7 +71,7 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 10px;
+  padding: 8px 11px;
   color: var(--muted);
   border: 1px solid transparent;
   border-radius: 999px;
@@ -86,14 +86,14 @@
 .nav a[aria-current="page"],
 .profileLink[aria-current="page"] {
   color: var(--text);
-  background: rgba(255, 255, 255, 0.045);
-  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(16, 24, 32, 0.06);
+  border-color: rgba(16, 24, 32, 0.09);
 }
 
 .nav a:hover,
 .profileLink:hover {
   color: var(--text);
-  background: rgba(255, 255, 255, 0.035);
+  background: rgba(16, 24, 32, 0.045);
 }
 
 .linkButton,
@@ -114,14 +114,14 @@
 
 .primaryButton {
   padding: 10px 15px;
-  color: #07111f;
-  background: var(--teal);
+  color: #fffdf7;
+  background: var(--ink);
   box-shadow: none;
   transition: background 160ms ease;
 }
 
 .primaryButton:hover {
-  background: #14b3ad;
+  background: var(--teal);
 }
 
 .iconButton {
@@ -131,8 +131,8 @@
   width: 38px;
   height: 38px;
   color: var(--muted);
-  background: rgba(255, 255, 255, 0.045);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(16, 24, 32, 0.045);
+  border: 1px solid rgba(16, 24, 32, 0.08);
   transition:
     background 160ms ease,
     color 160ms ease;
@@ -140,13 +140,13 @@
 
 .iconButton:hover {
   color: var(--text);
-  background: rgba(255, 255, 255, 0.07);
+  background: rgba(16, 24, 32, 0.07);
 }
 
 .main {
   width: min(1180px, calc(100% - 32px));
   margin: 0 auto;
-  padding: 44px 0 72px;
+  padding: 36px 0 72px;
 }
 
 .footer {
@@ -202,6 +202,7 @@
     align-items: start;
     top: 10px;
     gap: 10px 14px;
+    border-radius: 18px;
   }
 
   .nav {
