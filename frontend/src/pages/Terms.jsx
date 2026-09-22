@@ -5,9 +5,9 @@ export default function Terms() {
     <section className={styles.page}>
       <div className={styles.hero}>
         <span>Terms</span>
-        <h1>Basic terms for using MakoTrends.</h1>
+        <h1>Basic terms for using FuteTrends.</h1>
         <p>
-          MakoTrends is a points-based forecasting game. By using it, you agree
+          FuteTrends is a points-based forecasting game. By using it, you agree
           to play fairly and understand that points have no cash value.
         </p>
       </div>
@@ -15,7 +15,7 @@ export default function Terms() {
         <article>
           <h2>No real-money wagering</h2>
           <p>
-            MakoTrends does not support deposits, withdrawals, payouts,
+            FuteTrends does not support deposits, withdrawals, payouts,
             securities, gambling, or real-money prediction markets. Points are
             for reputation and ranking only.
           </p>

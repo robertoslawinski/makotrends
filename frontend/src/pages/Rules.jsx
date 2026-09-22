@@ -29,9 +29,9 @@ export default function Rules() {
     <section className={styles.page}>
       <div className={styles.hero}>
         <span>Platform rules</span>
-        <h1>Simple rules for fair trend predictions.</h1>
+        <h1>Simple rules for fair football predictions.</h1>
         <p>
-          MakoTrends is a points-based prediction game. It does not handle real
+          FuteTrends is a points-based prediction game. It does not handle real
           money, payouts, securities, or gambling. Points are for ranking and
           reputation only.
         </p>

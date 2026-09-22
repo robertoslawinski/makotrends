@@ -15,15 +15,15 @@ const statusLabels = {
 
 const proofPoints = [
   "Points, not betting",
-  "Yes/no future signals",
-  "Trend intelligence from markets"
+  "Yes/no football signals",
+  "Brazilian football intelligence"
 ];
 
 const trendSignals = [
-  { name: "AI Agents", change: "+34%", direction: "up" },
-  { name: "Humanoid Robots", change: "+21%", direction: "up" },
-  { name: "Traditional Search", change: "-18%", direction: "down" },
-  { name: "AI Coding Startups", change: "+27%", direction: "up" }
+  { name: "Brasileirao title race", competition: "Serie A 2026" },
+  { name: "Libertadores final", competition: "CONMEBOL 2026" },
+  { name: "Relegation battle", competition: "Serie A 2026" },
+  { name: "Table movement", competition: "Serie A 2026" }
 ];
 
 export default function Home() {
@@ -39,7 +39,7 @@ export default function Home() {
     try {
       const query = status === "all" ? "" : `?status=${status}`;
       const { data } = await api.get(`/api/predictions${query}`);
-      setPredictions(data);
+      setPredictions(data.filter((prediction) => prediction.title.includes("2026")));
     } catch (err) {
       setError(
         err.response?.data?.message ||
@@ -63,15 +63,15 @@ export default function Home() {
     <section className={styles.page}>
       <header className={styles.hero}>
         <div className={styles.heroCopy}>
-          <span className={styles.eyebrow}>Prediction intelligence</span>
-          <h1>Discover emerging trends before they go mainstream.</h1>
+          <span className={styles.eyebrow}>FuteTrends intelligence</span>
+          <h1>Predict Brazilian football before the table reacts.</h1>
           <p>
-            AI, culture, technology and market shifts transformed into live,
-            points-based forecasts.
+            Brasileirao 2026 and Libertadores signals transformed into live,
+            points-based forecasts for serious football fans.
           </p>
           <div className={styles.heroActions}>
             <a href="#markets">
-              Explore Trends <ArrowUpRight size={18} />
+              Explore Signals <ArrowUpRight size={18} />
             </a>
             <a href="#markets">View Live Markets</a>
           </div>
@@ -87,9 +87,7 @@ export default function Home() {
             {trendSignals.map((signal) => (
               <div className={styles.signalCard} key={signal.name}>
                 <span>{signal.name}</span>
-                <strong className={styles[signal.direction]}>
-                  {signal.direction === "up" ? "↑" : "↓"} {signal.change}
-                </strong>
+                <strong>{signal.competition}</strong>
               </div>
             ))}
           </div>
@@ -105,7 +103,7 @@ export default function Home() {
       <section className={styles.marketSection} id="markets">
         <div className={styles.marketIntro}>
           <span className={styles.eyebrow}>Live markets</span>
-          <h2>Signals to watch now.</h2>
+          <h2>Brazilian football signals to watch now.</h2>
         </div>
 
         <div className={styles.filters}>
@@ -124,7 +122,7 @@ export default function Home() {
 
       {loading && (
         <StateMessage type="loading" title="Loading live markets">
-          Fetching the latest prediction signals and vote distribution.
+          Fetching the latest football signals and vote distribution.
         </StateMessage>
       )}
       {!loading && error && (

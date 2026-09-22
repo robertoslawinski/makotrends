@@ -11,7 +11,7 @@ export default function NotFound() {
         <h1>This market path does not exist.</h1>
         <p>
           The link may be outdated, mistyped or pointing to a market that is no longer
-          available. Head back to the live board and keep scanning tomorrow's signals.
+          available. Head back to the live board and keep scanning the next football signal.
         </p>
         <div className={styles.actions}>
           <Link to="/">
