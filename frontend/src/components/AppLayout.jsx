@@ -1,6 +1,7 @@
-import { BookOpen, Info, LogOut, Shield, Target, Trophy, User } from "lucide-react";
+import { BookOpen, Info, LogOut, Shield, Trophy, User } from "lucide-react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import sharkLogo from "../assets/makotrends-shark-logo.png";
 import styles from "./AppLayout.module.css";
 
 export default function AppLayout() {
@@ -16,9 +17,9 @@ export default function AppLayout() {
     <div className={styles.shell}>
       <header className={styles.header}>
         <NavLink to="/" className={styles.brand}>
-          <span className={styles.brandMark} aria-hidden="true"><Target size={25} strokeWidth={2.3} /></span>
+          <img src={sharkLogo} alt="" aria-hidden="true" />
           <span>
-            Fute<strong>Trends</strong>
+            Mako<strong>Trends</strong>
           </span>
         </NavLink>
         <nav className={styles.nav}>
@@ -68,10 +69,10 @@ export default function AppLayout() {
       <footer className={styles.footer}>
         <div>
           <NavLink to="/" className={styles.footerBrand}>
-            <span className={styles.brandMark} aria-hidden="true"><Target size={19} strokeWidth={2.3} /></span>
-            <span>FuteTrends</span>
+            <img src={sharkLogo} alt="" aria-hidden="true" />
+            <span>MakoTrends</span>
           </NavLink>
-          <p>Points-only Brazilian football prediction game. No real-money wagering or payouts.</p>
+          <p>Points-only trend prediction game. No real-money wagering or payouts.</p>
         </div>
         <nav>
           <NavLink to="/rules">Rules</NavLink>

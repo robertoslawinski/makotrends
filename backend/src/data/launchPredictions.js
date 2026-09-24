@@ -1,186 +1,139 @@
-const dateAt = (isoDate) => new Date(`${isoDate}T18:00:00.000Z`);
+const daysFromNow = (days) => {
+  const date = new Date();
+  date.setDate(date.getDate() + days);
+  date.setHours(18, 0, 0, 0);
+  return date;
+};
 
 export const launchPredictions = [
   {
-    title: "Will Flamengo finish the 2026 Brasileirao in the top 3?",
+    title: "Will OpenAI or Anthropic launch a browser-native agent by Dec 31, 2026?",
     description:
-      "A season-table market on whether Flamengo ends the 2026 Serie A campaign inside the first three positions.",
-    category: "Brasileirao 2026",
-    deadline: dateAt("2026-11-15"),
-    resolutionDate: dateAt("2026-12-07"),
-    resolutionSource: "CBF final Brasileirao Serie A 2026 table",
+      "A market on whether a major AI lab ships an agent that can browse, click, and complete multi-step tasks directly in a consumer browser product.",
+    category: "AI",
+    deadline: daysFromNow(30),
+    resolutionDate: daysFromNow(32),
+    resolutionSource: "Official OpenAI or Anthropic product announcements",
     resolutionCriteria:
-      "Resolves YES if Flamengo is officially listed 1st, 2nd, or 3rd in the final CBF Brasileirao Serie A 2026 standings after all tie-breakers and disciplinary adjustments. Resolves NO otherwise.",
+      "Resolves YES if OpenAI or Anthropic publicly launches a consumer-accessible browser-native agent before the deadline. The agent must be able to navigate websites and take multi-step actions, not only summarize pages. Resolves NO otherwise.",
     pointsValue: 10,
     status: "open"
   },
   {
-    title: "Will Palmeiras reach the 2026 Libertadores final?",
+    title: "Will a new social app report 25M monthly active users in 2026?",
     description:
-      "A knockout-stage market on whether Palmeiras qualifies for the 2026 CONMEBOL Libertadores final.",
-    category: "Libertadores 2026",
-    deadline: dateAt("2026-10-20"),
-    resolutionDate: dateAt("2026-11-02"),
-    resolutionSource: "CONMEBOL match reports and official Libertadores bracket",
+      "A market on whether a social app launched after Jan 1, 2025 reaches meaningful mainstream scale during 2026.",
+    category: "Social Media",
+    deadline: daysFromNow(45),
+    resolutionDate: daysFromNow(47),
+    resolutionSource: "Company statements, investor materials, or credible third-party reporting",
     resolutionCriteria:
-      "Resolves YES if Palmeiras wins its semifinal tie and is officially listed by CONMEBOL as a finalist in the 2026 Libertadores. Resolves NO if Palmeiras is eliminated before the final or does not participate in the semifinal stage.",
-    pointsValue: 12,
-    status: "open"
-  },
-  {
-    title: "Will a Brazilian club win the 2026 Libertadores?",
-    description:
-      "A continental-title market on whether the Libertadores trophy goes to a club from Brazil.",
-    category: "Libertadores 2026",
-    deadline: dateAt("2026-11-20"),
-    resolutionDate: dateAt("2026-11-30"),
-    resolutionSource: "CONMEBOL official final match report",
-    resolutionCriteria:
-      "Resolves YES if the club officially declared champion of the 2026 CONMEBOL Libertadores is affiliated with CBF. Resolves NO if the champion is from any other federation.",
-    pointsValue: 14,
-    status: "open"
-  },
-  {
-    title: "Will the 2026 Libertadores final include at least one Brazilian club?",
-    description:
-      "A finalist-composition market for the single-match final scheduled in Montevideo.",
-    category: "Libertadores 2026",
-    deadline: dateAt("2026-10-20"),
-    resolutionDate: dateAt("2026-11-02"),
-    resolutionSource: "CONMEBOL official Libertadores finalist announcement",
-    resolutionCriteria:
-      "Resolves YES if at least one finalist in the 2026 Libertadores final is a CBF-affiliated Brazilian club. Resolves NO if neither finalist is Brazilian.",
+      "Resolves YES if a social app launched after Jan 1, 2025 publicly reports at least 25 million monthly active users before the deadline. Downloads alone do not count. Resolves NO if no qualifying report is available.",
     pointsValue: 10,
     status: "open"
   },
   {
-    title: "Will the 2026 Brasileirao champion finish with 75+ points?",
+    title: "Will Bitcoin trade above $150,000 before Dec 31, 2026?",
     description:
-      "A title-race strength market on whether the champion reaches a high-points threshold.",
-    category: "Brasileirao 2026",
-    deadline: dateAt("2026-11-15"),
-    resolutionDate: dateAt("2026-12-07"),
-    resolutionSource: "CBF final Brasileirao Serie A 2026 table",
+      "A crypto market on whether BTC reaches a clearly defined price threshold on a major exchange.",
+    category: "Crypto",
+    deadline: daysFromNow(60),
+    resolutionDate: daysFromNow(62),
+    resolutionSource: "CoinMarketCap, CoinGecko, Coinbase, Binance, or Kraken price history",
     resolutionCriteria:
-      "Resolves YES if the official 2026 Brasileirao Serie A champion finishes with 75 or more points after all final adjustments. Resolves NO if the champion finishes with 74 points or fewer.",
+      "Resolves YES if BTC/USD trades at or above $150,000 on at least one listed source before the deadline. Intraday spikes count if visible in public historical data. Resolves NO otherwise.",
     pointsValue: 10,
     status: "open"
   },
   {
-    title: "Will the 2026 Brasileirao relegation cutoff be 42+ points?",
+    title: "Will foldable phones exceed 3% of global smartphone shipments in 2026?",
     description:
-      "A relegation-battle market on the number of points required to avoid the bottom four.",
-    category: "Brasileirao 2026",
-    deadline: dateAt("2026-11-15"),
-    resolutionDate: dateAt("2026-12-07"),
-    resolutionSource: "CBF final Brasileirao Serie A 2026 table",
+      "A consumer hardware market on whether foldables move beyond niche adoption.",
+    category: "Consumer Tech",
+    deadline: daysFromNow(90),
+    resolutionDate: daysFromNow(95),
+    resolutionSource: "IDC, Counterpoint Research, Canalys, or another major smartphone shipment report",
     resolutionCriteria:
-      "Resolves YES if the 16th-placed club in the final 2026 Brasileirao Serie A table has 42 or more points. Resolves NO if the 16th-placed club has 41 points or fewer.",
-    pointsValue: 12,
-    status: "open"
-  },
-  {
-    title: "Will Botafogo finish ahead of Fluminense in the 2026 Brasileirao?",
-    description:
-      "A Rio table-race market comparing final league positions between Botafogo and Fluminense.",
-    category: "Brasileirao 2026",
-    deadline: dateAt("2026-11-15"),
-    resolutionDate: dateAt("2026-12-07"),
-    resolutionSource: "CBF final Brasileirao Serie A 2026 table",
-    resolutionCriteria:
-      "Resolves YES if Botafogo is placed above Fluminense in the final official 2026 Brasileirao Serie A standings. Resolves NO if Fluminense finishes above Botafogo or if either club is not in the final Serie A table.",
+      "Resolves YES if a credible market research report states that foldable phones exceeded 3% of global smartphone shipments for calendar year 2026. Resolves NO if reported share is 3% or lower, or no credible report supports the threshold.",
     pointsValue: 10,
     status: "open"
   },
   {
-    title: "Will Corinthians change head coach before the 2026 Brasileirao ends?",
+    title: "Will TikTok remain available in US app stores through Dec 31, 2026?",
     description:
-      "A club-management signal on whether Corinthians makes a senior head-coach change before the final league round is complete.",
-    category: "Brasileirao 2026",
-    deadline: dateAt("2026-11-01"),
-    resolutionDate: dateAt("2026-12-07"),
-    resolutionSource: "Corinthians official announcements, CBF match records, or major Brazilian sports outlets",
+      "A regulation and platform risk market on whether TikTok stays available for new US downloads.",
+    category: "Regulation",
+    deadline: daysFromNow(15),
+    resolutionDate: daysFromNow(17),
+    resolutionSource: "Apple App Store, Google Play Store, official TikTok statements, or US government notices",
     resolutionCriteria:
-      "Resolves YES if Corinthians officially appoints a different permanent or interim senior men's head coach before the final 2026 Brasileirao matchday is complete. Routine assistant absences or suspensions do not count. Resolves NO otherwise.",
+      "Resolves YES if TikTok remains available for new downloads in both the US Apple App Store and US Google Play Store at the deadline. Resolves NO if it is removed from either store for legal or regulatory reasons.",
     pointsValue: 10,
     status: "open"
   },
   {
-    title: "Will a Brazilian club sell a player to Europe for over EUR30M in 2026?",
+    title: "Will a major streaming platform launch interactive AI-generated shows in 2026?",
     description:
-      "A transfer-market signal on whether a Brazil-based club completes a major outbound sale.",
-    category: "Transfers",
-    deadline: dateAt("2026-12-20"),
-    resolutionDate: dateAt("2026-12-31"),
-    resolutionSource: "Club announcements, buying club announcements, CBF registration notices, Transfermarkt, Globo Esporte, GE, or UOL Esporte",
+      "A media market on whether AI-generated interactive entertainment becomes a mainstream streaming feature.",
+    category: "Media",
+    deadline: daysFromNow(75),
+    resolutionDate: daysFromNow(78),
+    resolutionSource: "Official announcements from Netflix, Disney, Amazon, Apple, YouTube, or Warner Bros. Discovery",
     resolutionCriteria:
-      "Resolves YES if a club based in Brazil announces or completes a permanent player sale to a European club for a reported guaranteed transfer fee above EUR30 million during calendar year 2026. Add-ons count only if reported as guaranteed. Resolves NO otherwise.",
-    pointsValue: 12,
-    status: "open"
-  },
-  {
-    title: "Will a Serie A goalkeeper score or assist in an official 2026 match?",
-    description:
-      "A rare-event market for goalkeepers from Brazilian Serie A clubs in official competitions.",
-    category: "Brasileirao 2026",
-    deadline: dateAt("2026-12-20"),
-    resolutionDate: dateAt("2026-12-31"),
-    resolutionSource: "CBF match reports, CONMEBOL match reports, club match reports, SofaScore, or ESPN Brasil",
-    resolutionCriteria:
-      "Resolves YES if any goalkeeper registered by a 2026 Brasileirao Serie A club is officially credited with a goal or assist in an official senior men's club match during calendar year 2026. Penalty shootout goals do not count. Resolves NO otherwise.",
-    pointsValue: 14,
-    status: "open"
-  },
-  {
-    title: "Will a Brasileirao 2026 club receive a points deduction this season?",
-    description:
-      "A governance-risk market on whether the official league table is altered by a disciplinary points penalty.",
-    category: "Brasileirao 2026",
-    deadline: dateAt("2026-12-20"),
-    resolutionDate: dateAt("2026-12-31"),
-    resolutionSource: "CBF, STJD, FIFA, CAS, or official league table updates",
-    resolutionCriteria:
-      "Resolves YES if any 2026 Brasileirao Serie A club has league points deducted from its official table total for disciplinary, registration, financial, or legal reasons during the 2026 season. Suspended penalties that do not change the table do not count. Resolves NO otherwise.",
-    pointsValue: 12,
-    status: "open"
-  },
-  {
-    title: "Will a Brazilian player finish as top scorer of the 2026 Libertadores?",
-    description:
-      "A player-performance market on whether the competition's scoring chart is led by a Brazilian player.",
-    category: "Libertadores 2026",
-    deadline: dateAt("2026-11-20"),
-    resolutionDate: dateAt("2026-11-30"),
-    resolutionSource: "CONMEBOL official Libertadores statistics",
-    resolutionCriteria:
-      "Resolves YES if CONMEBOL's final 2026 Libertadores scoring table lists a Brazilian player as the sole top scorer or tied top scorer. Nationality is based on CONMEBOL's player registration or official profile. Resolves NO otherwise.",
+      "Resolves YES if one of the listed platforms launches a consumer-facing show or series where AI generation materially changes scenes, dialogue, or story paths per viewer input. Basic recommendations or static interactive episodes do not count.",
     pointsValue: 10,
     status: "open"
   },
   {
-    title: "Will the 2026 Brasileirao have 3+ clubs finish with 70+ points?",
+    title: "Will Apple ship a consumer AI wearable before Dec 31, 2026?",
     description:
-      "A table-depth market on whether the title race produces three high-scoring teams.",
-    category: "Brasileirao 2026",
-    deadline: dateAt("2026-11-15"),
-    resolutionDate: dateAt("2026-12-07"),
-    resolutionSource: "CBF final Brasileirao Serie A 2026 table",
+      "A hardware market on whether Apple expands beyond phones, watches, and headsets with a new AI-first wearable.",
+    category: "Consumer Tech",
+    deadline: daysFromNow(120),
+    resolutionDate: daysFromNow(123),
+    resolutionSource: "Apple product announcements and Apple Store availability",
     resolutionCriteria:
-      "Resolves YES if at least three clubs finish the official 2026 Brasileirao Serie A season with 70 or more points after all final adjustments. Resolves NO if two or fewer clubs reach 70 points.",
+      "Resolves YES if Apple announces and makes available for purchase a new consumer wearable positioned around AI assistance before the deadline. Apple Watch updates and Vision Pro accessories do not count unless released as a distinct wearable product line.",
     pointsValue: 10,
     status: "open"
   },
   {
-    title: "Will a Brazilian club win the 2026 Libertadores final in regulation time?",
+    title: "Will an AI-generated song enter the Billboard Hot 100 top 40 in 2026?",
     description:
-      "A final-match market on whether a Brazilian finalist, if present, wins without extra time or penalties.",
-    category: "Libertadores 2026",
-    deadline: dateAt("2026-11-20"),
-    resolutionDate: dateAt("2026-11-30"),
-    resolutionSource: "CONMEBOL official final match report",
+      "A culture market on whether AI music reaches mainstream chart visibility.",
+    category: "Culture",
+    deadline: daysFromNow(100),
+    resolutionDate: daysFromNow(103),
+    resolutionSource: "Billboard Hot 100 chart records and artist disclosures or credible reporting",
     resolutionCriteria:
-      "Resolves YES if a CBF-affiliated Brazilian club wins the 2026 Libertadores final after 90 minutes plus stoppage time. Resolves NO if no Brazilian club wins the final, or if a Brazilian club wins only after extra time or penalties.",
-    pointsValue: 14,
+      "Resolves YES if a song whose lead or featured vocals are substantially AI-generated reaches position 40 or higher on the Billboard Hot 100 before the deadline. AI-assisted production alone does not count.",
+    pointsValue: 10,
+    status: "open"
+  },
+  {
+    title: "Will a humanoid robot be used in paid customer-facing retail service in 2026?",
+    description:
+      "A robotics market on whether humanoid robots move from demos into real customer-facing operations.",
+    category: "Robotics",
+    deadline: daysFromNow(110),
+    resolutionDate: daysFromNow(113),
+    resolutionSource: "Company announcements, retailer announcements, or credible technology reporting",
+    resolutionCriteria:
+      "Resolves YES if a humanoid robot is deployed in a paid, customer-facing role at a retail, hospitality, or food service location before the deadline. Pilot demos closed to the public do not count.",
+    pointsValue: 10,
+    status: "open"
+  },
+  {
+    title: "Will a major browser include built-in AI task automation by Dec 31, 2026?",
+    description:
+      "A software market on whether AI automation becomes a native browser capability.",
+    category: "Software",
+    deadline: daysFromNow(130),
+    resolutionDate: daysFromNow(133),
+    resolutionSource: "Official Chrome, Safari, Edge, Firefox, Arc, or Brave release notes",
+    resolutionCriteria:
+      "Resolves YES if a major browser ships a stable built-in feature that can complete multi-step web tasks from a user instruction. Sidebar chat, summarization, and search assistance alone do not count.",
+    pointsValue: 10,
     status: "open"
   }
 ];

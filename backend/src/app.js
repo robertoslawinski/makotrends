@@ -40,7 +40,7 @@ app.use(
 );
 
 app.get("/health", (_req, res) => {
-  res.json({ status: "ok", service: "futetrends-api" });
+  res.json({ status: "ok", service: "makotrends-api" });
 });
 
 app.use("/auth", authRoutes);

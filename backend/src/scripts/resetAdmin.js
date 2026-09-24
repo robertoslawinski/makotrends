@@ -25,7 +25,7 @@ const resetAdmin = async () => {
     { email: adminEmail },
     {
       $set: {
-        name: "FuteTrends Admin",
+        name: "MakoTrends Admin",
         passwordHash,
         role: "admin"
       },

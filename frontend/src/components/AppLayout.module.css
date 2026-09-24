@@ -35,16 +35,11 @@
   min-width: 214px;
 }
 
-.brandMark {
-  display: inline-flex;
-  flex: 0 0 auto;
-  align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
-  color: #fff;
-  background: #146b45;
-  border-radius: 8px;
+.brand img {
+  display: block;
+  width: 78px;
+  height: auto;
+  object-fit: contain;
 }
 
 .brand span {
@@ -175,9 +170,10 @@
   text-decoration: none;
 }
 
-.footerBrand .brandMark {
-  width: 30px;
-  height: 30px;
+.footerBrand img {
+  width: 52px;
+  height: auto;
+  object-fit: contain;
 }
 
 .footer p {
@@ -239,6 +235,10 @@
   .brand {
     min-width: 0;
     gap: 8px;
+  }
+
+  .brand img {
+    width: 64px;
   }
 
   .brand span {

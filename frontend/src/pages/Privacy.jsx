@@ -5,10 +5,10 @@ export default function Privacy() {
     <section className={styles.page}>
       <div className={styles.hero}>
         <span>Privacy Policy</span>
-        <h1>How FuteTrends handles basic account data.</h1>
+        <h1>How MakoTrends handles basic account data.</h1>
         <p>
           This MVP collects only the information needed to run accounts, votes,
-          points, and rankings. Last updated: September 22, 2026.
+          points, and rankings. Last updated: May 6, 2026.
         </p>
       </div>
       <div className={styles.stack}>
@@ -31,7 +31,7 @@ export default function Privacy() {
         <article>
           <h2>Service providers</h2>
           <p>
-            FuteTrends uses third-party infrastructure including Netlify,
+            MakoTrends uses third-party infrastructure including Netlify,
             Render, MongoDB Atlas, and GitHub. These providers process data as
             needed to host, deploy, and operate the app.
           </p>
@@ -39,7 +39,7 @@ export default function Privacy() {
         <article>
           <h2>Analytics</h2>
           <p>
-            FuteTrends may use privacy-conscious traffic analytics or Google
+            MakoTrends may use privacy-conscious traffic analytics or Google
             Analytics to understand page views, market interactions, referral
             sources, and basic device/browser information. Analytics events are
             used to improve the product experience and are not intended to store
