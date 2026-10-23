@@ -38,6 +38,7 @@ const upsertWeeklyMarkets = async () => {
             resolutionDate: market.resolutionDate,
             resolutionSource: market.resolutionSource,
             resolutionCriteria: market.resolutionCriteria,
+            automaticResolution: market.automaticResolution || null,
             pointsValue: market.pointsValue,
             status: existing.status === "resolved" ? existing.status : market.status
           }

@@ -1,6 +1,9 @@
 import Prediction from "../models/Prediction.js";
-import User from "../models/User.js";
 import Vote from "../models/Vote.js";
+import {
+  SettlementError,
+  settlePrediction
+} from "../services/predictionSettlementService.js";
 
 const closeExpiredPredictions = async () => {
   await Prediction.updateMany(
@@ -241,74 +244,17 @@ export const deletePrediction = async (req, res, next) => {
 export const resolvePrediction = async (req, res, next) => {
   try {
     const { result } = req.body;
-
-    if (!["yes", "no"].includes(result)) {
-      res.status(400);
-      throw new Error("Result must be yes or no");
-    }
-
-    const prediction = await Prediction.findById(req.params.id);
-
-    if (!prediction) {
-      res.status(404);
-      throw new Error("Prediction not found");
-    }
-
-    if (prediction.status === "resolved") {
-      res.status(400);
-      throw new Error("Prediction is already resolved");
-    }
-
-    const votes = await Vote.find({ predictionId: prediction._id });
-    const pointsForCorrectVote = prediction.pointsValue || 10;
-
-    const voteUpdates = [];
-    const userUpdates = new Map();
-
-    votes.forEach((vote) => {
-      const isCorrect = vote.selectedOption === result;
-      voteUpdates.push({
-        updateOne: {
-          filter: { _id: vote._id },
-          update: {
-            $set: {
-              isCorrect,
-              pointsEarned: isCorrect ? pointsForCorrectVote : 0
-            }
-          }
-        }
-      });
-
-      const userId = vote.userId.toString();
-      const current = userUpdates.get(userId) || {
-        totalPredictions: 0,
-        correctPredictions: 0,
-        points: 0
-      };
-      current.totalPredictions += 1;
-      if (isCorrect) {
-        current.correctPredictions += 1;
-        current.points += pointsForCorrectVote;
-      }
-      userUpdates.set(userId, current);
+    const prediction = await settlePrediction({
+      predictionId: req.params.id,
+      result,
+      method: "manual",
+      evidence: "Resolved by a MakoTrends administrator."
     });
-
-    if (voteUpdates.length > 0) {
-      await Vote.bulkWrite(voteUpdates);
-    }
-
-    await Promise.all(
-      Array.from(userUpdates.entries()).map(([userId, increments]) =>
-        User.findByIdAndUpdate(userId, { $inc: increments })
-      )
-    );
-
-    prediction.status = "resolved";
-    prediction.result = result;
-    await prediction.save();
-
     res.json(await withVoteStats(prediction, req.user._id));
   } catch (error) {
+    if (error instanceof SettlementError) {
+      res.status(error.statusCode);
+    }
     next(error);
   }
 };

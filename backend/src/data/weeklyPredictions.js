@@ -41,6 +41,14 @@ export const weeklyPredictions = [
     resolutionSource: "Coinbase BTC-USD one-minute candle, cross-checked with CoinGecko",
     resolutionCriteria:
       "Resolves YES if the Coinbase BTC-USD one-minute candle beginning at 18:00 UTC on Oct 30 has a closing price of at least $82,000.00. Resolves NO if that candle closes below $82,000.00. If Coinbase data is unavailable, CoinGecko's recorded USD price at 18:00 UTC is used.",
+    automaticResolution: {
+      enabled: true,
+      provider: "coinbase-candle",
+      symbol: "BTC-USD",
+      observationTime: atUtc("2026-10-30T18:00"),
+      operator: "gte",
+      threshold: 82000
+    },
     pointsValue: 10,
     status: "open"
   },

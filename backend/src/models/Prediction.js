@@ -1,5 +1,38 @@
 import mongoose from "mongoose";
 
+const automaticResolutionSchema = new mongoose.Schema(
+  {
+    enabled: {
+      type: Boolean,
+      default: false
+    },
+    provider: {
+      type: String,
+      enum: ["coinbase-candle"],
+      required: true
+    },
+    symbol: {
+      type: String,
+      trim: true,
+      required: true
+    },
+    observationTime: {
+      type: Date,
+      required: true
+    },
+    operator: {
+      type: String,
+      enum: ["gt", "gte", "lt", "lte"],
+      required: true
+    },
+    threshold: {
+      type: Number,
+      required: true
+    }
+  },
+  { _id: false }
+);
+
 const predictionSchema = new mongoose.Schema(
   {
     title: {
@@ -70,6 +103,25 @@ const predictionSchema = new mongoose.Schema(
       enum: ["yes", "no", null],
       default: null
     },
+    automaticResolution: {
+      type: automaticResolutionSchema,
+      default: null
+    },
+    resolutionEvidence: {
+      type: String,
+      trim: true,
+      maxlength: 1000,
+      default: ""
+    },
+    resolutionMethod: {
+      type: String,
+      enum: ["manual", "automatic", null],
+      default: null
+    },
+    resolvedAt: {
+      type: Date,
+      default: null
+    },
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
@@ -80,6 +132,7 @@ const predictionSchema = new mongoose.Schema(
 );
 
 predictionSchema.index({ status: 1, deadline: 1 });
+predictionSchema.index({ status: 1, resolutionDate: 1 });
 predictionSchema.index({ category: 1 });
 
 export default mongoose.model("Prediction", predictionSchema);

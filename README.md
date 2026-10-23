@@ -100,3 +100,24 @@ npm run markets:weekly --prefix backend
 Review titles, thresholds, sources, and dates before updating this file for the
 next round. Running the command again updates matching unresolved markets and
 does not create duplicates.
+
+## Automated Market Maintenance
+
+The hourly GitHub Actions workflow in `.github/workflows/market-maintenance.yml`
+closes expired markets and resolves markets that have an approved automatic
+provider. Add the production `MONGODB_URI` as a GitHub Actions repository secret
+before enabling the workflow. It never needs the admin password.
+
+Point awards are applied inside a MongoDB transaction. Repeated or concurrent
+resolution attempts cannot award points twice. Markets without an approved,
+machine-readable provider remain closed and are reported for editorial review.
+The first supported provider is Coinbase one-minute candles; the weekly Bitcoin
+market shows the required `automaticResolution` configuration.
+
+Run the same maintenance safely on demand with:
+
+```bash
+npm run markets:maintain --prefix backend
+```
+
+MongoDB transactions require a replica set, which MongoDB Atlas provides.
