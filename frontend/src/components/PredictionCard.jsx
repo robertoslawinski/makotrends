@@ -1,6 +1,7 @@
 import { CalendarDays } from "lucide-react";
 import { Link } from "react-router-dom";
 import { trackEvent } from "../utils/analytics";
+import { formatDeadlineUtc } from "../utils/weeklySchedule";
 import styles from "./PredictionCard.module.css";
 import VoteProgress from "./VoteProgress";
 
@@ -17,7 +18,7 @@ export default function PredictionCard({ prediction }) {
       <div className={styles.footer}>
         <span>
           <CalendarDays size={16} />
-          {new Date(prediction.deadline).toLocaleDateString()}
+          Closes {formatDeadlineUtc(prediction.deadline)}
         </span>
         <Link
           to={`/predictions/${prediction._id}`}

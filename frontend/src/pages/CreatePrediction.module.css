@@ -21,6 +21,44 @@
   color: var(--text);
 }
 
+.scheduleNote {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.scheduleNote > svg {
+  color: var(--gold);
+}
+
+.scheduleNote div {
+  display: grid;
+  gap: 3px;
+}
+
+.scheduleNote strong {
+  color: var(--text);
+}
+
+.scheduleNote span {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.form .scheduleNote button {
+  min-height: 38px;
+  padding: 0 13px;
+  color: var(--text);
+  border: 1px solid var(--border-strong);
+  background: transparent;
+  font-size: 13px;
+}
+
 .form label {
   display: grid;
   gap: 7px;
@@ -82,6 +120,14 @@
 
   .grid {
     grid-template-columns: 1fr;
+  }
+
+  .scheduleNote {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .form .scheduleNote button {
+    grid-column: 1 / -1;
   }
 
   .form button {

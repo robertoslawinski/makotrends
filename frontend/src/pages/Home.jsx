@@ -1,4 +1,4 @@
-import { ArrowUpRight, Filter } from "lucide-react";
+import { ArrowUpRight, CalendarClock, Filter } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import api from "../api/client";
 import PredictionCard from "../components/PredictionCard";
@@ -101,6 +101,15 @@ export default function Home() {
           <span key={item}>{item}</span>
         ))}
       </div>
+
+      <section className={styles.weeklyCycle} aria-label="Weekly market schedule">
+        <CalendarClock size={22} />
+        <div>
+          <strong>Weekly forecast</strong>
+          <span>New markets every Sunday. Predict by Friday at 18:00 UTC.</span>
+        </div>
+        <span>Results every weekend</span>
+      </section>
 
       <section className={styles.marketSection} id="markets">
         <div className={styles.marketIntro}>

@@ -236,6 +236,41 @@
   font-weight: 760;
 }
 
+.weeklyCycle {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.weeklyCycle svg {
+  color: var(--gold);
+}
+
+.weeklyCycle div {
+  display: grid;
+  gap: 4px;
+}
+
+.weeklyCycle strong {
+  color: var(--text);
+  font-size: 15px;
+}
+
+.weeklyCycle span {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.weeklyCycle > span {
+  color: var(--gold);
+  font-weight: 780;
+}
+
 .marketSection {
   display: grid;
   gap: 22px;
@@ -367,6 +402,16 @@
 
   .proofLine span {
     padding: 15px 16px;
+  }
+
+  .weeklyCycle {
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+    padding: 17px 0;
+  }
+
+  .weeklyCycle > span {
+    grid-column: 2;
   }
 
   .marketIntro h2 {

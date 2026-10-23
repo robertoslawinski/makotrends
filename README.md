@@ -75,3 +75,17 @@ db.users.updateOne({ email: "you@example.com" }, { $set: { role: "admin" } })
 ```
 
 Admins can create, edit, delete, and resolve predictions from the admin dashboard.
+
+## Weekly Market Cycle
+
+MakoTrends uses a predictable short-term publishing rhythm:
+
+- Sunday: publish 5 to 8 new markets.
+- Friday at 18:00 UTC: voting closes automatically.
+- Saturday: verify the listed sources and resolve each market.
+- Weekend: publish results and prepare the next forecast.
+
+The create-market form defaults to the next Friday deadline and Saturday
+resolution window. Use the **Use weekly schedule** action to restore those dates
+after editing them. Each question must still include an objective threshold, a
+named resolution source, and criteria that can be verified after the deadline.

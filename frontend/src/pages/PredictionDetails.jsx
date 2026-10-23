@@ -13,6 +13,7 @@ import StateMessage from "../components/StateMessage";
 import VoteProgress from "../components/VoteProgress";
 import { useAuth } from "../context/AuthContext";
 import { trackEvent } from "../utils/analytics";
+import { formatDeadlineUtc } from "../utils/weeklySchedule";
 import styles from "./PredictionDetails.module.css";
 
 export default function PredictionDetails() {
@@ -179,7 +180,7 @@ export default function PredictionDetails() {
           <dl>
             <div>
               <dt>Deadline</dt>
-              <dd>{new Date(prediction.deadline).toLocaleString()}</dd>
+              <dd>{formatDeadlineUtc(prediction.deadline)}</dd>
             </div>
             <div>
               <dt>Total votes</dt>

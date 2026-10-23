@@ -14,6 +14,7 @@ const validatePredictionInput = ({
   description,
   category,
   deadline,
+  resolutionDate,
   resolutionCriteria,
   resolutionSource,
   pointsValue
@@ -38,7 +39,16 @@ const validatePredictionInput = ({
     }
   }
 
-  return deadlineDate;
+  const parsedResolutionDate = resolutionDate ? new Date(resolutionDate) : null;
+  if (parsedResolutionDate && Number.isNaN(parsedResolutionDate.getTime())) {
+    throw new Error("Resolution date must be a valid date");
+  }
+
+  if (parsedResolutionDate && parsedResolutionDate <= deadlineDate) {
+    throw new Error("Resolution date must be after the deadline");
+  }
+
+  return { deadlineDate, resolutionDate: parsedResolutionDate };
 };
 
 const withVoteStats = async (prediction, viewerId = null) => {
@@ -115,7 +125,7 @@ export const getPrediction = async (req, res, next) => {
 
 export const createPrediction = async (req, res, next) => {
   try {
-    const deadlineDate = validatePredictionInput(req.body);
+    const { deadlineDate, resolutionDate } = validatePredictionInput(req.body);
 
     if (deadlineDate <= new Date()) {
       res.status(400);
@@ -127,7 +137,7 @@ export const createPrediction = async (req, res, next) => {
       description: req.body.description,
       category: req.body.category,
       deadline: deadlineDate,
-      resolutionDate: req.body.resolutionDate || null,
+      resolutionDate,
       resolutionSource: req.body.resolutionSource,
       resolutionCriteria: req.body.resolutionCriteria,
       pointsValue: req.body.pointsValue || 10,
@@ -185,6 +195,17 @@ export const updatePrediction = async (req, res, next) => {
         throw new Error("Resolution date must be a valid date");
       }
       updates.resolutionDate = resolutionDate;
+    }
+
+    const effectiveDeadline = updates.deadline || prediction.deadline;
+    const effectiveResolutionDate =
+      updates.resolutionDate !== undefined
+        ? updates.resolutionDate
+        : prediction.resolutionDate;
+
+    if (effectiveResolutionDate && effectiveResolutionDate <= effectiveDeadline) {
+      res.status(400);
+      throw new Error("Resolution date must be after the deadline");
     }
 
     const updatedPrediction = await Prediction.findByIdAndUpdate(

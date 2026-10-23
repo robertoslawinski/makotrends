@@ -9,8 +9,8 @@ const rules = [
   },
   {
     icon: Clock,
-    title: "Deadlines matter",
-    text: "Open markets accept votes until the listed deadline. Expired markets close automatically."
+    title: "Weekly deadlines",
+    text: "New short-term markets are published every Sunday and normally close Friday at 18:00 UTC. Expired markets close automatically."
   },
   {
     icon: Scale,
@@ -47,6 +47,14 @@ export default function Rules() {
             </article>
           );
         })}
+      </div>
+      <div className={styles.panel}>
+        <h2>Weekly forecast cycle</h2>
+        <p>
+          New questions are published on Sunday, voting runs through Friday, and
+          results are reviewed over the weekend. Every market still displays its
+          exact deadline, source and resolution criteria.
+        </p>
       </div>
       <div className={styles.panel}>
         <h2>Resolution policy</h2>

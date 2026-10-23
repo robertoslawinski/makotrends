@@ -1,32 +1,34 @@
-import { Save } from "lucide-react";
+import { CalendarClock, Save } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "../api/client";
 import StateMessage from "../components/StateMessage";
+import {
+  getNextWeeklySchedule,
+  toDatetimeLocalValue
+} from "../utils/weeklySchedule";
 import styles from "./CreatePrediction.module.css";
 
-const initialForm = {
-  title: "",
-  description: "",
-  category: "",
-  deadline: "",
-  resolutionDate: "",
-  resolutionSource: "",
-  resolutionCriteria: "",
-  pointsValue: 10,
-  status: "open"
-};
+const createInitialForm = () => {
+  const schedule = getNextWeeklySchedule();
 
-const toDatetimeLocal = (value) => {
-  const date = new Date(value);
-  date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
-  return date.toISOString().slice(0, 16);
+  return {
+    title: "",
+    description: "",
+    category: "",
+    deadline: toDatetimeLocalValue(schedule.deadline),
+    resolutionDate: toDatetimeLocalValue(schedule.resolutionDate),
+    resolutionSource: "",
+    resolutionCriteria: "",
+    pointsValue: 10,
+    status: "open"
+  };
 };
 
 export default function CreatePrediction({ editMode = false }) {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [form, setForm] = useState(initialForm);
+  const [form, setForm] = useState(createInitialForm);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(editMode);
   const [saving, setSaving] = useState(false);
@@ -42,8 +44,8 @@ export default function CreatePrediction({ editMode = false }) {
           title: data.title,
           description: data.description,
           category: data.category,
-          deadline: toDatetimeLocal(data.deadline),
-          resolutionDate: data.resolutionDate ? toDatetimeLocal(data.resolutionDate) : "",
+          deadline: toDatetimeLocalValue(data.deadline),
+          resolutionDate: data.resolutionDate ? toDatetimeLocalValue(data.resolutionDate) : "",
           resolutionSource: data.resolutionSource || "",
           resolutionCriteria: data.resolutionCriteria || "",
           pointsValue: data.pointsValue || 10,
@@ -60,6 +62,15 @@ export default function CreatePrediction({ editMode = false }) {
     };
     load();
   }, [editMode, id]);
+
+  const applyWeeklySchedule = () => {
+    const schedule = getNextWeeklySchedule();
+    setForm((current) => ({
+      ...current,
+      deadline: toDatetimeLocalValue(schedule.deadline),
+      resolutionDate: toDatetimeLocalValue(schedule.resolutionDate)
+    }));
+  };
 
   const submit = async (event) => {
     event.preventDefault();
@@ -97,6 +108,18 @@ export default function CreatePrediction({ editMode = false }) {
     <section className={styles.page}>
       <form className={styles.form} onSubmit={submit}>
         <h1>{editMode ? "Edit prediction" : "Create prediction"}</h1>
+        {!editMode && (
+          <div className={styles.scheduleNote}>
+            <CalendarClock size={20} />
+            <div>
+              <strong>Weekly schedule</strong>
+              <span>Voting closes Friday at 18:00 UTC. Resolution is prepared for Saturday.</span>
+            </div>
+            <button type="button" onClick={applyWeeklySchedule}>
+              Use weekly schedule
+            </button>
+          </div>
+        )}
         {loading && (
           <StateMessage type="loading" title="Loading market draft" compact>
             Fetching the saved market data.
