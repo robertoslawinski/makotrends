@@ -6,6 +6,7 @@
   "main": "src/server.js",
   "scripts": {
     "admin:reset": "node src/scripts/resetAdmin.js",
+    "cleanup:football": "node src/scripts/removeFootballMarkets.js",
     "dev": "nodemon src/server.js",
     "markets:launch": "node src/scripts/upsertLaunchMarkets.js",
     "markets:news": "node src/scripts/upsertCurrentNewsMarkets.js",
