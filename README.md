@@ -89,3 +89,14 @@ The create-market form defaults to the next Friday deadline and Saturday
 resolution window. Use the **Use weekly schedule** action to restore those dates
 after editing them. Each question must still include an objective threshold, a
 named resolution source, and criteria that can be verified after the deadline.
+
+The reviewed weekly batch in `backend/src/data/weeklyPredictions.js` can be
+created or updated without deleting votes or history:
+
+```bash
+npm run markets:weekly --prefix backend
+```
+
+Review titles, thresholds, sources, and dates before updating this file for the
+next round. Running the command again updates matching unresolved markets and
+does not create duplicates.
